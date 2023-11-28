@@ -7,6 +7,15 @@ public abstract class ConstructionProject
     private String type;
     private String name;
     private Resource resource;
+
+    public ConstructionProject()
+    {
+        this.timeline = 0;
+        this.budget = 0;
+        this.type = "";
+        this.name = "";
+    }
+
     public ConstructionProject(int timeline, double budget, String type, String name, Resource resource)
     {
         this.timeline = timeline;
