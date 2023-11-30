@@ -6,16 +6,21 @@ public abstract class ConstructionProject
     private double budget;
     private String type;
     private String name;
+    private String status;
     private Resource resource;
-    public ConstructionProject(int timeline, double budget, String type, String name, Resource resource)
+    private int id;
+    public ConstructionProject(int timeline, double budget, String type, String name,String status, Resource resource, int id)
     {
         this.timeline = timeline;
         this.budget = budget;
         this.type = type;
         this.name = name;
+        this.status=status;
+        this.resource=resource;
+        this.id=id;
     }
 
-    public int getTimeline() {
+    public  int getTimeline() {
         return timeline;
     }
 
@@ -37,6 +42,16 @@ public abstract class ConstructionProject
 
     public void setTimeline(int timeline) {
         this.timeline = timeline;
+    }
+
+    public String getStatus()
+    {
+        return status;
+    }
+
+    public void setStatus(String status)
+    {
+        this.status=status;
     }
 
     public boolean equals(Object obj)

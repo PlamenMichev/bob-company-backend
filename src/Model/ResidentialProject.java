@@ -7,28 +7,27 @@ public class ResidentialProject extends ConstructionProject
     private int numberOfKitchens;
     private int numberOfBathrooms;
     private int roomsWithPlumbing;
-    private String status;
-    public ResidentialProject(int timeline, double budget, String type, String name, Resource resource
-                                , double size, int numberOfFloors, int numberOfKitchens
-                                , int numberOfBathrooms, int roomsWithPlumbing, String  status)
+
+    public ResidentialProject(int timeline, double budget,String type, String name,Resource resource, String status, int id , double size, int numberOfFloors, int numberOfKitchens
+                                , int numberOfBathrooms, int roomsWithPlumbing)
     {
-        super(timeline, budget, type, name, resource);
+        super(timeline, budget, "residential", name,status, resource, id);
         this.size = size;
         this.numberOfFloors = numberOfFloors;
         this.numberOfKitchens = numberOfKitchens;
         this.numberOfBathrooms = numberOfBathrooms;
         this.roomsWithPlumbing = roomsWithPlumbing;
-        this.status = status;
+
     }
-    public ResidentialProject(double budget, String type, String name, Resource resource, double size, String status)
+    public ResidentialProject( int timeline, double budget, String type, String name, String status,Resource resource , int id, double size)
     {
-        super(9, budget, type, name, resource);
+        super(9, budget, "Residential", name,status, resource, id);
         this.size = size;
         this.numberOfFloors = 1;
         this.numberOfKitchens = 1;
         this.numberOfBathrooms = 1;
         this.roomsWithPlumbing = 1;
-        this.status = status;
+
 
     }
 
