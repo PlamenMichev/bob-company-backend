@@ -2,6 +2,7 @@ package Data;
 
 import Model.ConstructionProject;
 import Model.ProjectList;
+import Model.ResidentialProject;
 import parser.ParserException;
 import parser.XmlJsonParser;
 
@@ -9,7 +10,7 @@ import java.util.ArrayList;
 
 public class ProjectsModelManager
 {
-  public ArrayList<ConstructionProject> GetAllProjects() throws ParserException
+  public ArrayList<ResidentialProject> GetAllProjects() throws ParserException
   {
     XmlJsonParser parser = new XmlJsonParser();
     var simpleName = ProjectList.class.getSimpleName();

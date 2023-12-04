@@ -4,30 +4,30 @@ import java.util.ArrayList;
 
 public class ProjectList
 {
-  private ArrayList<ConstructionProject> projects;
+  private ArrayList<ResidentialProject> residentialProjects;
 
   public ProjectList()
   {
-    projects = new ArrayList<>();
+    residentialProjects = new ArrayList<>();
   }
 
-  public void addProject(ConstructionProject project)
+  public void addProject(ResidentialProject project)
   {
-    projects.add(project);
+    residentialProjects.add(project);
   }
 
-  public void removeProject(ConstructionProject project)
+  public void removeProject(ResidentialProject project)
   {
-    projects.remove(project);
+    residentialProjects.remove(project);
   }
 
-  public ArrayList<ConstructionProject> getProjects()
+  public ArrayList<ResidentialProject> getProjects()
   {
-    return projects;
+    return residentialProjects;
   }
 
-  public void setProjects(ArrayList<ConstructionProject> projects)
+  public void setProjects(ArrayList<ResidentialProject> projects)
   {
-    this.projects = projects;
+    this.residentialProjects = projects;
   }
 }

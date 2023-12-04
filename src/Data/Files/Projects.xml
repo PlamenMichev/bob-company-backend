@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <ProjectList>
-    <projects id="1">
+    <residentialProjects id="1">
         <timeline>10</timeline>
         <budget>2000.24</budget>
         <type>Residential Building</type>
         <name>Plamen's house</name>
-    </projects>
-    <projects id="2">
+    </residentialProjects>
+    <residentialProjects id="2">
         <timeline>3</timeline>
         <budget>125.24</budget>
         <type>Road Construction</type>
         <name>Toma's Road</name>
-    </projects>
+    </residentialProjects>
 </ProjectList>
