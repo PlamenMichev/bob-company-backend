@@ -11,7 +11,8 @@
 <?import javafx.scene.layout.RowConstraints?>
 
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="GUI.ProjectsListController">
    <top>
       <GridPane prefHeight="23.0" prefWidth="600.0" BorderPane.alignment="CENTER">
         <columnConstraints>
@@ -52,10 +53,10 @@
       </GridPane>
    </top>
    <left>
-      <TableView prefHeight="351.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+      <TableView prefHeight="351.0" prefWidth="600.0" BorderPane.alignment="CENTER" fx:id="projectList">
         <columns>
-          <TableColumn prefWidth="158.0" text="Index" />
-          <TableColumn prefWidth="440.0" text="Name" />
+          <TableColumn prefWidth="158.0" text="Index" fx:id="id" />
+          <TableColumn prefWidth="440.0" text="Name" fx:id="name"  />
         </columns>
       </TableView>
    </left>

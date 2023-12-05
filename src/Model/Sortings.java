@@ -24,7 +24,7 @@ public class Sortings
         }
         // T(n) = 2 + n + 2*T(n/2)
         // a = 2, b = 2, k = 1 ==> a = b
-        // T(n) = Θ( n^1*log(n) ) = n*log(n)
+        // T(n) = O( n^1*log(n) ) = n*log(n)
     }
 
     /**

@@ -37,6 +37,10 @@ public abstract class ConstructionProject
         this.id=id;
     }
 
+    public int getId() {
+        return id;
+    }
+
     /**
      * Getter function for timeline
      * @return timeline

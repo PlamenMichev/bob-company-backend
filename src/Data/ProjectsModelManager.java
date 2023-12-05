@@ -20,6 +20,6 @@ public class ProjectsModelManager
 
 //    File file = parser.toXml(list, "cdList.xml");
 //    System.out.println("Generated file: " + file.getAbsolutePath());
-    return list.getProjects();
+    return new ArrayList<>();
   }
 }
