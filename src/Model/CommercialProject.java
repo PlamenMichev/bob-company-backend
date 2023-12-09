@@ -1,5 +1,8 @@
 package Model;
 
+import Util.EmptyStringFieldException;
+import Util.InvalidValueException;
+
 /**
  * The class that stores data for construction projects
  * @author Group 2
@@ -28,6 +31,11 @@ public class CommercialProject extends ConstructionProject
                            double size, int numberOfFloors, String intendedUse)
   {
     super(timeline, budget, "commercial", name,status,resource, id);
+    if(size < 0) throw new InvalidValueException();
+    if (numberOfFloors < 1) throw new InvalidValueException();
+    if(intendedUse.charAt(0) < 'A' ||
+      intendedUse.charAt(0) > 'z') throw new InvalidValueException();
+    if(intendedUse == null) throw new EmptyStringFieldException();
     this.size=size;
     this.numberOfFloors=numberOfFloors;
     this.intendedUse=intendedUse;
@@ -48,6 +56,10 @@ public class CommercialProject extends ConstructionProject
                            String status,Resource resource , int id,
                            double size, String intendedUse){
     super(18, budget, "commercial", name, status, resource, id);
+    if(size < 0) throw new InvalidValueException();
+    if(intendedUse.charAt(0) < 'A' ||
+            intendedUse.charAt(0) > 'z') throw new InvalidValueException();
+    if(intendedUse == null) throw new EmptyStringFieldException();
     this.size=size;
     numberOfFloors=1;
     this.intendedUse=intendedUse;
@@ -77,6 +89,7 @@ public class CommercialProject extends ConstructionProject
    */
   public void setNumberOfFloors(int numberOfFloors)
   {
+    if(numberOfFloors < 1) throw new InvalidValueException();
     this.numberOfFloors=numberOfFloors;
   }
 

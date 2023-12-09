@@ -10,7 +10,7 @@ public class ConstructionCompanyGUIFXML extends Application
 {
   public void start(Stage window) throws IOException
   {
-    window.setTitle("All Projects");
+    window.setTitle("Bob's company");
     FXMLLoader loader = new FXMLLoader();
     loader.setLocation(getClass().getResource("index.fxml"));
     Scene scene = new Scene(loader.load());

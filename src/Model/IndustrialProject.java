@@ -1,5 +1,8 @@
 package Model;
 
+import Util.EmptyStringFieldException;
+import Util.InvalidValueException;
+
 /**
  * The class that stores data about industrial projects
  * @author Group 2
@@ -26,6 +29,10 @@ public class IndustrialProject extends ConstructionProject
                            double size, String buildingType)
   {
     super(timeline, budget, "industrial", name, status, resource, id);
+    if(size < 0) throw new InvalidValueException();
+    if(buildingType.charAt(0) < 'A' ||
+      buildingType.charAt(0) > 'z') throw new InvalidValueException();
+    if(buildingType == null) throw new EmptyStringFieldException();
     this.size=size;
     this.buildingType=buildingType;
   }
@@ -44,6 +51,7 @@ public class IndustrialProject extends ConstructionProject
                            String status,Resource resource , int id, double size)
   {
     super(30, budget, "industrial", name, status, resource ,id);
+    if(size < 0) throw new InvalidValueException();
     this.size=size;
     buildingType="warehouse";
   }
@@ -72,6 +80,7 @@ public class IndustrialProject extends ConstructionProject
    */
   public void setSize(double size)
   {
+    if(size < 0) throw new InvalidValueException();
     this.size=size;
   }
 
@@ -81,6 +90,9 @@ public class IndustrialProject extends ConstructionProject
    */
   public void setBuildingType(String buildingType)
   {
+    if(buildingType.charAt(0) < 'A' ||
+            buildingType.charAt(0) > 'z') throw new InvalidValueException();
+    if(buildingType == null) throw new EmptyStringFieldException();
     this.buildingType=buildingType;
   }
 
