@@ -1,5 +1,7 @@
 package Model;
 
+import Util.InvalidValueException;
+
 /**
  * The class that stores data for residential projects
  * @author Group 2
@@ -32,6 +34,11 @@ public class ResidentialProject extends ConstructionProject
                               int numberOfBathrooms, int roomsWithPlumbing)
     {
         super(timeline, budget, "residential", name,status, resource, id);
+        if(size < 0) throw new InvalidValueException();
+        if(numberOfFloors < 1) throw new InvalidValueException();
+        if(numberOfKitchens < 1) throw new InvalidValueException();
+        if(numberOfBathrooms < 1) throw new InvalidValueException();
+        if(roomsWithPlumbing < 1) throw new InvalidValueException();
         this.size = size;
         this.numberOfFloors = numberOfFloors;
         this.numberOfKitchens = numberOfKitchens;
@@ -54,6 +61,7 @@ public class ResidentialProject extends ConstructionProject
                                String status,Resource resource , int id, double size)
     {
         super(9, budget, "Residential", name,status, resource, id);
+        if(size < 0) throw new InvalidValueException();
         this.size = size;
         this.numberOfFloors = 1;
         this.numberOfKitchens = 1;
@@ -69,14 +77,6 @@ public class ResidentialProject extends ConstructionProject
      */
     public double getSize() {
         return size;
-    }
-
-    /**
-     * Setter function for status
-     * @param status new value for status
-     */
-    public void setStatus(String status) {
-        super.setStatus(status);
     }
 
     /**
@@ -109,14 +109,6 @@ public class ResidentialProject extends ConstructionProject
      */
     public int getRoomsWithPlumbing() {
         return roomsWithPlumbing;
-    }
-
-    /**
-     * Getter function for status
-     * @return status
-     */
-    public String getStatus() {
-        return super.getStatus();
     }
 
     /**

@@ -1,5 +1,7 @@
 package Model;
 
+import Util.InvalidValueException;
+
 /**
  * The class that stores the resources used for every project
  * @author Group2
@@ -21,6 +23,10 @@ public class Resource
      */
     public Resource(double materialExpenses, double manHours, double expectedTotalHours, double expenses)
     {
+        if(materialExpenses < 0) throw new InvalidValueException();
+        if(manHours < 0) throw new InvalidValueException();
+        if(expectedTotalHours < 0) throw new InvalidValueException();
+        if(expenses < 0) throw new InvalidValueException();
         this.materialExpenses = materialExpenses;
         this.manHours = manHours;
         this.expectedTotalHours = expectedTotalHours;
@@ -32,6 +38,7 @@ public class Resource
      * @param materialExpenses new value for materialExpenses
      */
     public void setMaterialExpenses(double materialExpenses) {
+        if(materialExpenses < 0) throw new InvalidValueException();
         this.materialExpenses = materialExpenses;
     }
 
@@ -48,6 +55,7 @@ public class Resource
      * @param manHours new value for manHours
      */
     public void setManHours(double manHours) {
+        if(manHours < 0) throw new InvalidValueException();
         this.manHours = manHours;
     }
 
@@ -64,6 +72,7 @@ public class Resource
      * @param expectedTotalHours new value for expectedTotalHours
      */
     public void setExpectedTotalHours(double expectedTotalHours) {
+        if(expectedTotalHours < 0) throw new InvalidValueException();
         this.expectedTotalHours = expectedTotalHours;
     }
 
@@ -80,6 +89,7 @@ public class Resource
      * @param expenses new value for expenses
      */
     public void setExpenses(double expenses) {
+        if(expenses < 0) throw new InvalidValueException();
         this.expenses = expenses;
     }
 

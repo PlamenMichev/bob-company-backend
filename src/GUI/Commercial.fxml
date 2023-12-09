@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
@@ -12,12 +14,12 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.CommercialController">
    <bottom>
       <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
             <Button mnemonicParsing="false" text="Delete" />
-            <Button mnemonicParsing="false" text="Save">
+            <Button fx:id="save" mnemonicParsing="false" onAction="#switchToIndex" text="Save">
                <HBox.margin>
                   <Insets left="15.0" right="15.0" />
                </HBox.margin>
@@ -54,19 +56,26 @@
             <Label text="Number of floors" GridPane.columnIndex="2" GridPane.rowIndex="5" />
             <Label text="Timeline" GridPane.rowIndex="4" />
             <Label text="Budget" GridPane.rowIndex="5" />
-            <TextField GridPane.columnIndex="1" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <TextField GridPane.columnIndex="3" />
-            <TextField GridPane.columnIndex="3" GridPane.rowIndex="1" />
-            <TextField GridPane.columnIndex="3" GridPane.rowIndex="2" />
+            <TextField alignment="CENTER" GridPane.columnIndex="1" />
+            <TextField alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <TextField alignment="CENTER" promptText="18" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <TextField alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <TextField alignment="CENTER" GridPane.columnIndex="3" />
+            <TextField alignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+            <TextField alignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="2" />
             <TextField GridPane.columnIndex="3" GridPane.rowIndex="3" />
-            <TextField GridPane.columnIndex="3" GridPane.rowIndex="4" />
-            <TextField GridPane.columnIndex="3" GridPane.rowIndex="3" />
-            <TextField GridPane.columnIndex="3" GridPane.rowIndex="5" />
-            <ChoiceBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField alignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+            <TextField alignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+            <TextField alignment="CENTER" promptText="1" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+            <ChoiceBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                <items>
+                    <FXCollections fx:factory="observableArrayList">
+                        <String fx:value="Ongoing" />
+                        <String fx:value="Finished" />
+                    </FXCollections>
+                </items>
+            </ChoiceBox>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Commercial" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
       </GridPane>
    </left>
