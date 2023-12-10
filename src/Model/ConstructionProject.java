@@ -1,11 +1,13 @@
 package Model;
 
+import java.io.Serializable;
+
 /**
  * Abstract class for the overall layout of the projects
  * @author Group 2
  * @version 1.0
  */
-public abstract class ConstructionProject
+public abstract class ConstructionProject implements Serializable
 {
     private int timeline;
     private double budget;

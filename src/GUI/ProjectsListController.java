@@ -1,14 +1,11 @@
 package GUI;
 
 import Model.ConstructionProject;
-import java.net.URL;
-import java.util.ResourceBundle;
 
-import Model.RoadProjects;
+import Model.RoadProject;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -22,7 +19,7 @@ public class ProjectsListController
 
   public void initialize()
   {
-    var project = new RoadProjects(1, 2.0, "plamen", "done", null, 1, 2.0, 2.0);
+    var project = new RoadProject(1, 2.0, "plamen", "done", null, 1, 2.0, 2.0);
 
     ObservableList<ConstructionProject> projects = FXCollections.observableArrayList();
     projects.add(project);
