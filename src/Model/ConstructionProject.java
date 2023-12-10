@@ -40,7 +40,7 @@ public abstract class ConstructionProject implements Serializable
         if(type.equals("residential") && (budget < 100000 || budget > 500000) ||
                 type.equals("commercial") && (budget < 500000 || budget > 2000000) ||
                 type.equals("industrial") && (budget < 2000000 || budget > 10000000) ||
-                type.equals("road") && (budget < 1000000 || budget > 5000000)) throw  new InvalidValueException();
+                type.equals("road") && (budget < 1000000 || budget > 5000000)) throw new InvalidValueException();
         if(type == null) throw new InvalidValueException();
         if(name.charAt(0) < 'A' ||
             name.charAt(0) > 'z') throw new InvalidValueException();

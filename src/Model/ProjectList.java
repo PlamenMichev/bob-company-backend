@@ -41,6 +41,11 @@ public class ProjectList implements Serializable
         projects.remove(constructionProject);
     }
 
+    public ArrayList<ConstructionProject> getProjects()
+    {
+        return projects;
+    }
+
     /**
      * Method used to sort the list ascending by name
      */

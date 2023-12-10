@@ -24,7 +24,7 @@ public class Main {
         var projects = projectModelManager.getAllProjects();
         System.out.println("1 " + projects.size());
         projects.addProject(
-            new CommercialProject(10, 2.0, "name", "status", new Resource(0, 0, 0, 0), 1, 2000,"house"));
+            new CommercialProject(10, 500001, "name", "status", new Resource(0, 0, 0, 0), 1, 2000,"house"));
         projectModelManager.saveProjects(projects);
         System.out.println("2 " + projects.size());
     }
