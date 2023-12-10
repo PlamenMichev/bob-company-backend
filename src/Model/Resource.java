@@ -2,7 +2,7 @@ package Model;
 
 import java.io.Serializable;
 
-import Util.InvalidValueException;
+import Utils.InvalidValueException;
 
 /**
  * The class that stores the resources used for every project

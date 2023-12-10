@@ -1,6 +1,6 @@
 package Model;
 
-import Util.InvalidValueException;
+import Utils.InvalidValueException;
 
 /**
  * The class that stores data for residential projects

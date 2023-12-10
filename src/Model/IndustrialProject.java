@@ -1,7 +1,7 @@
 package Model;
 
-import Util.EmptyStringFieldException;
-import Util.InvalidValueException;
+import Utils.EmptyStringFieldException;
+import Utils.InvalidValueException;
 
 /**
  * The class that stores data about industrial projects
