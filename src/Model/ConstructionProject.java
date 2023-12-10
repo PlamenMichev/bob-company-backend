@@ -1,5 +1,8 @@
 package Model;
 
+import Util.EmptyStringFieldException;
+import Util.InvalidValueException;
+
 import java.io.Serializable;
 
 /**
@@ -30,6 +33,19 @@ public abstract class ConstructionProject implements Serializable
     public ConstructionProject(int timeline, double budget, String type,
                                String name,String status, Resource resource, int id)
     {
+        if(type.equals("residential") && (timeline < 6 || timeline > 12) ||
+            type.equals("commercial") && (timeline < 12 || timeline > 24) ||
+            type.equals("industrial") && (timeline < 24 || timeline > 36) ||
+            type.equals("road") && (timeline < 12 || timeline > 24)) throw new InvalidValueException();
+        if(type.equals("residential") && (budget < 100000 || budget > 500000) ||
+                type.equals("commercial") && (budget < 500000 || budget > 2000000) ||
+                type.equals("industrial") && (budget < 2000000 || budget > 10000000) ||
+                type.equals("road") && (budget < 1000000 || budget > 5000000)) throw  new InvalidValueException();
+        if(type == null) throw new InvalidValueException();
+        if(name.charAt(0) < 'A' ||
+            name.charAt(0) > 'z') throw new InvalidValueException();
+        if(name == null) throw new EmptyStringFieldException();
+
         this.timeline = timeline;
         this.budget = budget;
         this.type = type;
@@ -80,6 +96,7 @@ public abstract class ConstructionProject implements Serializable
      * @param budget new value for budget
      */
     public void setBudget(double budget) {
+        if(budget < 0) throw new InvalidValueException();
         this.budget = budget;
     }
 
@@ -88,6 +105,7 @@ public abstract class ConstructionProject implements Serializable
      * @param timeline new value for timeline
      */
     public void setTimeline(int timeline) {
+        if(timeline < 0) throw new InvalidValueException();
         this.timeline = timeline;
     }
 
@@ -107,6 +125,42 @@ public abstract class ConstructionProject implements Serializable
     public void setStatus(String status)
     {
         this.status=status;
+    }
+
+    /**
+     * Getter function for materialExpenses
+     * @return materialExpenses
+     */
+    public double getMaterialExpenses()
+    {
+        return resource.getMaterialExpenses();
+    }
+
+    /**
+     * Getter function for manHours
+     * @return manHours
+     */
+    public double getManHours()
+    {
+        return resource.getManHours();
+    }
+
+    /**
+     * Getter function for expectedTotalHours
+     * @return expectedTotalHours
+     */
+    public double getExpectedTotalHours()
+    {
+        return resource.getExpectedTotalHours();
+    }
+
+    /**
+     * Getter function for expenses
+     * @return expenses
+     */
+    public double getExpenses()
+    {
+        return resource.getExpenses();
     }
 
     /**
