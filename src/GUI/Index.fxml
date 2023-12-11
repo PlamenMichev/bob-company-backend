@@ -24,13 +24,14 @@
            <MenuButton fx:id="add" mnemonicParsing="false" prefHeight="79.0" prefWidth="109.0" text="Add">
                <items>
                    <MenuItem fx:id="residential" mnemonicParsing="false" onAction="#switchToResidential" text="Residential building" />
-                   <MenuItem fx:id="commercial" mnemonicParsing="false" onAction="#switchToCommercial" text="Commercial building" />
+<!--                   <MenuItem fx:id="commercial" mnemonicParsing="false" onAction="#switchToCommercial" text="Commercial building" />-->
                    <MenuItem fx:id="industrial" mnemonicParsing="false" onAction="#switchToIndustrial" text="Industrial project" />
                    <MenuItem fx:id="road" mnemonicParsing="false" onAction="#switchToRoad" text="Road construction" />
                </items>
            </MenuButton>
            <Button fx:id="edit" mnemonicParsing="false" prefHeight="65.0" prefWidth="54.0" text="Edit" />
          <Button mnemonicParsing="false" onAction="#switchToStatistics" prefHeight="34.0" prefWidth="82.0" text="Statistics" />
+           <fx:include fx:id="commercial" source="Commercial.fxml" />
          <HBox alignment="CENTER_RIGHT" prefHeight="34.0" prefWidth="358.0">
             <children>
                <MenuButton mnemonicParsing="false" prefHeight="34.0" prefWidth="109.0" text="Sort">

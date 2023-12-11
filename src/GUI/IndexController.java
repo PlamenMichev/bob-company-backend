@@ -22,6 +22,8 @@ import java.util.Objects;
 
 public class IndexController
 {
+    @FXML private CommercialController commercialController;
+
     @FXML private Button edit;
     @FXML private MenuButton add;
     @FXML private MenuItem residential;
@@ -41,6 +43,8 @@ public class IndexController
     private Scene scene;
     private Parent root;
 
+    private ProjectModelManager modelManager;
+
     public void initialize()
     {
         name.setCellValueFactory(new PropertyValueFactory<ConstructionProject, String>("name"));
@@ -48,13 +52,14 @@ public class IndexController
         budget.setCellValueFactory(new PropertyValueFactory<ConstructionProject, Double>("budget"));
         timeline.setCellValueFactory(new PropertyValueFactory<ConstructionProject, Integer>("timeline"));
 
+        modelManager = new ProjectModelManager("projects.bin");
         updateProjects();
+        commercialController.init(modelManager);
     }
 
     private void updateProjects()
     {
-        var projectModelManager = new ProjectModelManager("projects.bin");
-        var projects = projectModelManager.getAllProjects();
+        var projects = modelManager.getAllProjects();
         var projectsForTableViewFormat = FXCollections.observableArrayList(projects.getProjects());
 
         this.projectList.setItems(projectsForTableViewFormat);
