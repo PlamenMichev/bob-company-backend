@@ -8,10 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -39,24 +36,25 @@ public class CommercialController
     @FXML private TextField timeline;
     @FXML private TextField budget;
 
+    private TabPane tabPane;
+
     private ProjectModelManager projectModelManager;
 
-    public void init(ProjectModelManager projectModelManager)
+    public void init(ProjectModelManager projectModelManager, TabPane tabPane)
     {
         this.projectModelManager = projectModelManager;
+        this.tabPane = tabPane;
     }
 
     public void switchToIndex(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("Index.fxml")));
+
         if (event.getSource() == save)
         {
             submitForm();
         }
 
-        stage = (Stage)(save.getScene().getWindow());
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        tabPane.getSelectionModel().select(0); // The index tab
     }
 
     public void submitForm()
@@ -98,5 +96,21 @@ public class CommercialController
         a.setTitle("Confirmation");
         a.setContentText("The project has been saved!");
         a.showAndWait();
+        resetValues();
+    }
+
+    public void resetValues()
+    {
+        name.setText("");
+        status.setValue("Ongoing");
+        size.setText("");
+        timeline.setText("");
+        budget.setText("");
+        intendedUse.setText("");
+        materialExpenses.setText("");
+        manHoursUsed.setText("");
+        expectedTotalHours.setText("");
+        expenses.setText("");
+        numberOfFloors.setText("");
     }
 }

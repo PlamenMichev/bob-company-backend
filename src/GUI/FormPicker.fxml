@@ -6,15 +6,15 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.FormPickerController">
     <top>
-        <TabPane tabClosingPolicy="UNAVAILABLE">
+        <TabPane fx:id="tabPane" tabClosingPolicy="UNAVAILABLE">
             <Tab text="Residential">
                 <fx:include source="Residential.fxml" />
             </Tab>
 
-            <Tab text="Commercial">
-                <fx:include source="Commercial.fxml" />
+            <Tab fx:id="commercialTab" text="Commercial" onSelectionChanged="#tabChanged">
+                <fx:include source="Commercial.fxml" fx:id="commercial" />
             </Tab>
 
             <Tab text="Industrial">

@@ -24,15 +24,23 @@ public class ProjectsListController
 
   private ProjectModelManager modelManager;
 
-  public void initialize()
+  public void init(ProjectModelManager modelManager)
   {
     name.setCellValueFactory(new PropertyValueFactory<ConstructionProject, String>("name"));
     type.setCellValueFactory(new PropertyValueFactory<ConstructionProject, String>("type"));
     budget.setCellValueFactory(new PropertyValueFactory<ConstructionProject, Double>("budget"));
     timeline.setCellValueFactory(new PropertyValueFactory<ConstructionProject, Integer>("timeline"));
 
-    modelManager = new ProjectModelManager("projects.bin");
+    this.modelManager = modelManager;
     updateProjects();
+  }
+
+  public void reset()
+  {
+    if (modelManager != null)
+    {
+      updateProjects();
+    }
   }
 
   private void updateProjects()
