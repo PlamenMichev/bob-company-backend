@@ -6,6 +6,7 @@ import Model.RoadProject;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -22,7 +23,7 @@ import java.util.Objects;
 
 public class IndexController
 {
-    @FXML private CommercialController commercialController;
+    @FXML private ProjectsListController projectsListController;
 
     @FXML private Button edit;
     @FXML private MenuButton add;
@@ -31,38 +32,25 @@ public class IndexController
     @FXML private MenuItem industrial;
     @FXML private MenuItem road;
 
-    // Table View
-    @FXML private TableView<ConstructionProject> projectList;
-    @FXML private TableColumn<ConstructionProject, String> name;
-    @FXML private TableColumn<ConstructionProject, String> type;
-    @FXML private TableColumn<ConstructionProject, Double> budget;
-    @FXML private TableColumn<ConstructionProject, Integer> timeline;
-
-
     private Stage stage;
     private Scene scene;
     private Parent root;
 
-    private ProjectModelManager modelManager;
+    @FXML private TabPane tabPane;
+    @FXML private Tab allProjectsTab;
 
     public void initialize()
     {
-        name.setCellValueFactory(new PropertyValueFactory<ConstructionProject, String>("name"));
-        type.setCellValueFactory(new PropertyValueFactory<ConstructionProject, String>("type"));
-        budget.setCellValueFactory(new PropertyValueFactory<ConstructionProject, Double>("budget"));
-        timeline.setCellValueFactory(new PropertyValueFactory<ConstructionProject, Integer>("timeline"));
-
-        modelManager = new ProjectModelManager("projects.bin");
-        updateProjects();
-        commercialController.init(modelManager);
+        // TODO: initialize other controllers
+        System.out.println("IndexController initialized " + projectsListController);
     }
 
-    private void updateProjects()
+    public void tabChanged(Event event)
     {
-        var projects = modelManager.getAllProjects();
-        var projectsForTableViewFormat = FXCollections.observableArrayList(projects.getProjects());
-
-        this.projectList.setItems(projectsForTableViewFormat);
+        if(allProjectsTab.isSelected())
+        {
+//            allProjectsTab.reset();
+        }
     }
 
     public void switchToResidential(ActionEvent event) throws IOException {

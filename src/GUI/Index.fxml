@@ -1,49 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.TabPane?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.IndexController">
-   <left>
-      <TableView prefHeight="389.0" prefWidth="600.0" BorderPane.alignment="CENTER" fx:id="projectList">
-        <columns>
-            <TableColumn fx:id="name" prefWidth="150" sortable="false" text="Name" />
-            <TableColumn fx:id="type" prefWidth="150" sortable="false" text="Type" />
-            <TableColumn fx:id="budget" prefWidth="150" sortable="false" text="Budget" />
-            <TableColumn fx:id="timeline" prefWidth="150" sortable="false" text="Timeline" />
-        </columns>
-      </TableView>
-   </left>
+<?import javafx.scene.control.Tab?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.IndexController">
    <top>
-       <HBox prefHeight="34.0" prefWidth="600.0" BorderPane.alignment="CENTER">
-           <MenuButton fx:id="add" mnemonicParsing="false" prefHeight="79.0" prefWidth="109.0" text="Add">
-               <items>
-                   <MenuItem fx:id="residential" mnemonicParsing="false" onAction="#switchToResidential" text="Residential building" />
-<!--                   <MenuItem fx:id="commercial" mnemonicParsing="false" onAction="#switchToCommercial" text="Commercial building" />-->
-                   <MenuItem fx:id="industrial" mnemonicParsing="false" onAction="#switchToIndustrial" text="Industrial project" />
-                   <MenuItem fx:id="road" mnemonicParsing="false" onAction="#switchToRoad" text="Road construction" />
-               </items>
-           </MenuButton>
-           <Button fx:id="edit" mnemonicParsing="false" prefHeight="65.0" prefWidth="54.0" text="Edit" />
-         <Button mnemonicParsing="false" onAction="#switchToStatistics" prefHeight="34.0" prefWidth="82.0" text="Statistics" />
-           <fx:include fx:id="commercial" source="Commercial.fxml" />
-         <HBox alignment="CENTER_RIGHT" prefHeight="34.0" prefWidth="358.0">
-            <children>
-               <MenuButton mnemonicParsing="false" prefHeight="34.0" prefWidth="109.0" text="Sort">
-                 <items>
-                   <MenuItem mnemonicParsing="false" text="Name" />
-                   <MenuItem mnemonicParsing="false" text="Project type" />
-                   <MenuItem mnemonicParsing="false" text="Budget" />
-                   <MenuItem mnemonicParsing="false" text="Timeline" />
-                 </items>
-               </MenuButton>
-            </children>
-         </HBox>
-       </HBox>
+       <TabPane tabClosingPolicy="UNAVAILABLE">
+               <Tab fx:id="allProjectsTab" onSelectionChanged="#tabChanged" text="All Projects">
+                   <fx:include fx:id="projectsList" source="ProjectsList.fxml" />
+               </Tab>
+
+               <Tab text="Add">
+                   <fx:include source="FormPicker.fxml" />
+                </Tab>
+
+                <Tab onSelectionChanged="#tabChanged" text="Statistics">
+                     <fx:include source="Statistics.fxml" />
+                </Tab>
+       </TabPane>
    </top>
 </BorderPane>

@@ -1,5 +1,6 @@
 package GUI;
 
+import Data.ProjectModelManager;
 import Model.ConstructionProject;
 
 import Model.RoadProject;
@@ -13,21 +14,32 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 public class ProjectsListController
 {
-//  @FXML private TableView<ConstructionProject> projectList;
-//  @FXML private TableColumn<ConstructionProject, String> name;
-//  @FXML private TableColumn<ConstructionProject, String> type;
-//  @FXML private TableColumn<ConstructionProject, String> budget;
-//  @FXML private TableColumn<ConstructionProject, Integer> timeline;
-//
-//  public void initialize()
-//  {
-//    var project = new RoadProject(1, 2.0, "plamen", "done", null, 1, 2.0, 2.0);
-//
-//    ObservableList<ConstructionProject> projects = FXCollections.observableArrayList();
-//    projects.add(project);
-//
-//    id.setCellValueFactory(new PropertyValueFactory<ConstructionProject, Integer>("id"));
-//    name.setCellValueFactory(new PropertyValueFactory<ConstructionProject, String>("name"));
-//    this.projectList.setItems(projects);
-//  }
+
+  // Table View
+  @FXML private TableView<ConstructionProject> projectList;
+  @FXML private TableColumn<ConstructionProject, String> name;
+  @FXML private TableColumn<ConstructionProject, String> type;
+  @FXML private TableColumn<ConstructionProject, Double> budget;
+  @FXML private TableColumn<ConstructionProject, Integer> timeline;
+
+  private ProjectModelManager modelManager;
+
+  public void initialize()
+  {
+    name.setCellValueFactory(new PropertyValueFactory<ConstructionProject, String>("name"));
+    type.setCellValueFactory(new PropertyValueFactory<ConstructionProject, String>("type"));
+    budget.setCellValueFactory(new PropertyValueFactory<ConstructionProject, Double>("budget"));
+    timeline.setCellValueFactory(new PropertyValueFactory<ConstructionProject, Integer>("timeline"));
+
+    modelManager = new ProjectModelManager("projects.bin");
+    updateProjects();
+  }
+
+  private void updateProjects()
+  {
+    var projects = modelManager.getAllProjects();
+    var projectsForTableViewFormat = FXCollections.observableArrayList(projects.getProjects());
+
+    this.projectList.setItems(projectsForTableViewFormat);
+  }
 }
