@@ -67,7 +67,7 @@ public class CommercialProject extends ConstructionProject
 
   /**
    * Getter function for size
-   * @return size
+   * @return the size
    */
   public double getSize()
   {
