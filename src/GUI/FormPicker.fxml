@@ -9,20 +9,20 @@
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.FormPickerController">
     <top>
         <TabPane fx:id="tabPane" tabClosingPolicy="UNAVAILABLE">
-            <Tab text="Residential">
-                <fx:include source="Residential.fxml" />
+            <Tab fx:id="residentialTab" text="Residential">
+                <fx:include fx:id="residential" source="Residential.fxml" />
             </Tab>
 
             <Tab fx:id="commercialTab" text="Commercial" onSelectionChanged="#tabChanged">
-                <fx:include source="Commercial.fxml" fx:id="commercial" />
+                <fx:include fx:id="commercial" source="Commercial.fxml" />
             </Tab>
 
-            <Tab text="Industrial">
-                <fx:include source="Industrial.fxml" />
+            <Tab fx:id="industrialTab" text="Industrial">
+                <fx:include fx:id="industrial" source="Industrial.fxml" />
             </Tab>
 
-            <Tab text="Road">
-                <fx:include source="Road.fxml" />
+            <Tab fx:id="roadTab" text="Road">
+                <fx:include fx:id="road" source="Road.fxml" />
             </Tab>
         </TabPane>
     </top>

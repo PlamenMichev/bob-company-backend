@@ -16,17 +16,12 @@ import java.util.Objects;
 
 public class CommercialController
 {
-    private Stage stage;
-    private Scene scene;
-    private Parent root;
-
     @FXML
     private Button save;
 
     // Form states
     @FXML private TextField name;
     @FXML private ChoiceBox status;
-    @FXML private TextField size;
     @FXML private TextField intendedUse;
     @FXML private TextField materialExpenses;
     @FXML private TextField manHoursUsed;
@@ -35,9 +30,9 @@ public class CommercialController
     @FXML private TextField numberOfFloors;
     @FXML private TextField timeline;
     @FXML private TextField budget;
+    @FXML private TextField size;
 
     private TabPane tabPane;
-
     private ProjectModelManager projectModelManager;
 
     public void init(ProjectModelManager projectModelManager, TabPane tabPane)
@@ -46,9 +41,7 @@ public class CommercialController
         this.tabPane = tabPane;
     }
 
-    public void switchToIndex(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("Index.fxml")));
-
+    public void submitHandler(ActionEvent event) throws IOException {
         if (event.getSource() == save)
         {
             submitForm();
@@ -81,7 +74,7 @@ public class CommercialController
                 Double.parseDouble(manHoursUsed),
                 Double.parseDouble(expectedTotalHours),
                 Double.parseDouble(expenses)),
-            1,
+            projectModelManager.getAllProjects().getProjects().size(),
             Double.parseDouble(size),
             Integer.parseInt(numberOfFloors),
             intendedUse
