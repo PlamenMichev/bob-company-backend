@@ -1,14 +1,12 @@
 package GUI;
 
+import Data.ProjectModelManager;
 import Model.ConstructionProject;
-import java.net.URL;
-import java.util.ResourceBundle;
 
-import Model.RoadProjects;
+import Model.RoadProject;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -16,19 +14,40 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 public class ProjectsListController
 {
+
+  // Table View
   @FXML private TableView<ConstructionProject> projectList;
-  @FXML private TableColumn<ConstructionProject, Integer> id;
   @FXML private TableColumn<ConstructionProject, String> name;
+  @FXML private TableColumn<ConstructionProject, String> type;
+  @FXML private TableColumn<ConstructionProject, Double> budget;
+  @FXML private TableColumn<ConstructionProject, Integer> timeline;
 
-  public void initialize()
+  private ProjectModelManager modelManager;
+
+  public void init(ProjectModelManager modelManager)
   {
-    var project = new RoadProjects(1, 2.0, "plamen", "done", null, 1, 2.0, 2.0);
-
-    ObservableList<ConstructionProject> projects = FXCollections.observableArrayList();
-    projects.add(project);
-
-    id.setCellValueFactory(new PropertyValueFactory<ConstructionProject, Integer>("id"));
     name.setCellValueFactory(new PropertyValueFactory<ConstructionProject, String>("name"));
-    this.projectList.setItems(projects);
+    type.setCellValueFactory(new PropertyValueFactory<ConstructionProject, String>("type"));
+    budget.setCellValueFactory(new PropertyValueFactory<ConstructionProject, Double>("budget"));
+    timeline.setCellValueFactory(new PropertyValueFactory<ConstructionProject, Integer>("timeline"));
+
+    this.modelManager = modelManager;
+    updateProjects();
+  }
+
+  public void reset()
+  {
+    if (modelManager != null)
+    {
+      updateProjects();
+    }
+  }
+
+  private void updateProjects()
+  {
+    var projects = modelManager.getAllProjects();
+    var projectsForTableViewFormat = FXCollections.observableArrayList(projects.getProjects());
+
+    this.projectList.setItems(projectsForTableViewFormat);
   }
 }

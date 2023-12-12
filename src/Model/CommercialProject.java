@@ -1,7 +1,7 @@
 package Model;
 
-import Util.EmptyStringFieldException;
-import Util.InvalidValueException;
+import Utils.EmptyStringFieldException;
+import Utils.InvalidValueException;
 
 /**
  * The class that stores data for construction projects
@@ -67,7 +67,7 @@ public class CommercialProject extends ConstructionProject
 
   /**
    * Getter function for size
-   * @return size
+   * @return the size
    */
   public double getSize()
   {

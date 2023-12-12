@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.RoadController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.RoadController">
    <left>
       <GridPane prefHeight="300.0" prefWidth="632.0" BorderPane.alignment="CENTER">
         <columnConstraints>
@@ -43,34 +43,23 @@
             <Label text="Expected total hours" GridPane.columnIndex="2" GridPane.rowIndex="2" />
             <Label text="Expenses" GridPane.columnIndex="2" GridPane.rowIndex="3" />
             <Label text="Number of bridges" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-            <Label text="Environmental challenges" GridPane.columnIndex="2" GridPane.rowIndex="5" />
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="5">
-               <children>
-                  <Label text="Width">
-                     <VBox.margin>
-                        <Insets bottom="10.0" />
-                     </VBox.margin>
-                  </Label>
-                  <Label alignment="CENTER" text="Length" />
-               </children>
-            </VBox>
-            <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
-               <children>
-                  <TextField alignment="CENTER" />
-                  <TextField alignment="CENTER" />
-               </children>
-            </VBox>
-            <TextField alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <TextField alignment="CENTER" promptText="18" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+             <Label text="Environmental challenges" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+             <Label text="Width" GridPane.columnIndex="0" GridPane.rowIndex="6" />
+             <Label text="Length" GridPane.columnIndex="0" GridPane.rowIndex="5" />
+
+            <TextField alignment="CENTER" GridPane.columnIndex="1" fx:id="name" />
+            <TextField alignment="CENTER" promptText="18" GridPane.columnIndex="1" GridPane.rowIndex="3" fx:id="timeline" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Road" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <TextField alignment="CENTER" GridPane.columnIndex="1" />
-            <TextField alignment="CENTER" GridPane.columnIndex="3" />
-            <TextField alignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-            <TextField alignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-            <TextField alignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-            <TextField alignment="CENTER" promptText="0" GridPane.columnIndex="3" GridPane.rowIndex="4" />
-            <TextField alignment="CENTER" promptText="0" GridPane.columnIndex="3" GridPane.rowIndex="5" />
-             <ChoiceBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+             <TextField alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="4" fx:id="budget" />
+             <TextField alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="5" fx:id="length" />
+             <TextField alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="6" fx:id="width" />
+            <TextField alignment="CENTER" GridPane.columnIndex="3" fx:id="materialExpenses" />
+            <TextField alignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="1" fx:id="manHoursUsed" />
+            <TextField alignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="2" fx:id="expectedTotalHours" />
+            <TextField alignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="3" fx:id="expenses" />
+            <TextField alignment="CENTER" promptText="0" GridPane.columnIndex="3" GridPane.rowIndex="4" fx:id="numberOfBridges" />
+            <TextField alignment="CENTER" promptText="0" GridPane.columnIndex="3" GridPane.rowIndex="5" fx:id="environmentalChallenges" />
+             <ChoiceBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" fx:id="status">
                  <items>
                      <FXCollections fx:factory="observableArrayList">
                          <String fx:value="Ongoing" />
@@ -85,7 +74,7 @@
       <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER_RIGHT">
          <children>
             <Button mnemonicParsing="false" text="Delete" />
-            <Button fx:id="save" mnemonicParsing="false" onAction="#switchToIndex" text="Save">
+            <Button fx:id="save" mnemonicParsing="false" onAction="#submitHandler" text="Save">
                <HBox.margin>
                   <Insets left="15.0" right="15.0" />
                </HBox.margin>

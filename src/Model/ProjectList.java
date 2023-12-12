@@ -1,4 +1,7 @@
 package Model;
+import Utils.Sortings;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -8,7 +11,7 @@ import java.util.Collections;
  * @author Group 2
  * @version 1.0
  */
-public class ProjectList
+public class ProjectList implements Serializable
 {
     ArrayList<ConstructionProject> projects;
 
@@ -36,6 +39,11 @@ public class ProjectList
     public void removeProject(ConstructionProject constructionProject)
     {
         projects.remove(constructionProject);
+    }
+
+    public ArrayList<ConstructionProject> getProjects()
+    {
+        return projects;
     }
 
     /**
@@ -175,5 +183,10 @@ public class ProjectList
                         total += projects.get(i).getExpenses();
         }
         return total;
+    }
+
+    public int size()
+    {
+        return projects.size();
     }
 }

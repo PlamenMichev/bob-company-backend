@@ -1,13 +1,15 @@
 package Model;
 
-import Util.InvalidValueException;
+import java.io.Serializable;
+
+import Utils.InvalidValueException;
 
 /**
  * The class that stores the resources used for every project
  * @author Group2
  * @version 1.0
  */
-public class Resource
+public class Resource implements Serializable
 {
     private double materialExpenses;
     private double manHours;

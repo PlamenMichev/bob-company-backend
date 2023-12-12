@@ -1,4 +1,6 @@
-import Data.ProjectsModelManager;
+import Data.ProjectModelManager;
+import Model.CommercialProject;
+import Model.Resource;
 import parser.ParserException;
 
 // Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
@@ -18,8 +20,12 @@ public class Main {
             System.out.println("i = " + i);
         }
 
-        var projectModelManager = new ProjectsModelManager();
-        var projects = projectModelManager.GetAllProjects();
-        System.out.println(projects.size());
+        var projectModelManager = new ProjectModelManager("projects.bin");
+        var projects = projectModelManager.getAllProjects();
+        System.out.println("1 " + projects.size());
+        projects.addProject(
+            new CommercialProject(10, 500001, "name", "status", new Resource(0, 0, 0, 0), 1, 2000,"house"));
+        projectModelManager.saveProjects(projects);
+        System.out.println("2 " + projects.size());
     }
 }

@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.IndustrialController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.IndustrialController">
    <left>
       <GridPane prefHeight="300.0" prefWidth="620.0" BorderPane.alignment="CENTER">
         <columnConstraints>
@@ -31,25 +31,29 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
+<!--             TODO Add Size-->
             <Label text="Name" />
             <Label text="Type" GridPane.rowIndex="1" />
             <Label text="Status" GridPane.rowIndex="2" />
             <Label text="Timeline" GridPane.rowIndex="3" />
             <Label text="Budget" GridPane.rowIndex="4" />
+            <Label text="Size" GridPane.rowIndex="5" />
             <Label text="Building type" GridPane.columnIndex="2" />
             <Label text="Material expenses" GridPane.columnIndex="2" GridPane.rowIndex="1" />
             <Label text="Man hours used" GridPane.columnIndex="2" GridPane.rowIndex="2" />
             <Label text="Expected total hours" GridPane.columnIndex="2" GridPane.rowIndex="3" />
             <Label text="Expenses" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-            <TextField alignment="CENTER" GridPane.columnIndex="1" />
-            <TextField alignment="CENTER" promptText="30" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <TextField alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <TextField alignment="CENTER" GridPane.columnIndex="3" />
-            <TextField alignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="1" />
-            <TextField alignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="2" />
-            <TextField alignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="3" />
-            <TextField alignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="4" />
-             <ChoiceBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+
+            <TextField alignment="CENTER" GridPane.columnIndex="1" fx:id="name" />
+            <TextField alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="5" fx:id="size" />
+            <TextField alignment="CENTER" promptText="30" GridPane.columnIndex="1" GridPane.rowIndex="3" fx:id="timeline" />
+            <TextField alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="4" fx:id="budget" />
+            <TextField alignment="CENTER" GridPane.columnIndex="3" fx:id="buildingType" />
+            <TextField alignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="1" fx:id="materialExpenses" />
+            <TextField alignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="2" fx:id="manHoursUsed" />
+            <TextField alignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="3" fx:id="expectedTotalHours" />
+            <TextField alignment="CENTER" GridPane.columnIndex="3" GridPane.rowIndex="4" fx:id="expenses" />
+             <ChoiceBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" fx:id="status">
                  <items>
                      <FXCollections fx:factory="observableArrayList">
                          <String fx:value="Ongoing" />
@@ -65,7 +69,7 @@
       <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER_RIGHT">
          <children>
             <Button mnemonicParsing="false" text="Delete" />
-            <Button fx:id="save" mnemonicParsing="false" onAction="#switchToIndex" text="Save">
+            <Button fx:id="save" mnemonicParsing="false" onAction="#submitHandler" text="Save">
                <HBox.margin>
                   <Insets left="15.0" right="15.0" />
                </HBox.margin>

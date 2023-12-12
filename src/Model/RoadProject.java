@@ -1,13 +1,13 @@
 package Model;
 
-import Util.InvalidValueException;
+import Utils.InvalidValueException;
 
 /**
  * The class that stores data for road projects
  * @author Group 2
  * @version 1.0
  */
-public class RoadProjects extends ConstructionProject
+public class RoadProject extends ConstructionProject
 {
   private double length;
   private double width;
@@ -27,7 +27,7 @@ public class RoadProjects extends ConstructionProject
    * @param numberOfBridges the number of bridges along the road
    * @param environmentalChallenges the number of environmental
    */
-  public RoadProjects(int timeline, double budget, String name, String status,Resource resource ,
+  public RoadProject(int timeline, double budget, String name, String status,Resource resource ,
                       int id, double length, double width, int numberOfBridges, int environmentalChallenges)
   {
     super(timeline, budget,"road", name, status, resource, id);
@@ -53,7 +53,7 @@ public class RoadProjects extends ConstructionProject
    * @param length the length of the road
    * @param width the width of the road
    */
-  public RoadProjects(int timeline, double budget, String name, String status,Resource resource ,
+  public RoadProject(int timeline, double budget, String name, String status,Resource resource ,
                       int id, double length, double width)
   {
     super(18, budget, "road", name, status, resource, id);
@@ -150,7 +150,7 @@ public class RoadProjects extends ConstructionProject
   {
     if(obj==null || obj.getClass()!=getClass()) return false;
 
-    RoadProjects other=(RoadProjects) obj;
+    RoadProject other=(RoadProject) obj;
 
     return super.equals(other) &&
             length ==other.length &&
