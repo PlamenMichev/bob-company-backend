@@ -23,12 +23,12 @@
                 </HBox.margin>
             </Button>
 
-           <MenuButton mnemonicParsing="false" prefHeight="34.0" prefWidth="109.0" text="Sort">
+           <MenuButton mnemonicParsing="false" prefHeight="34.0" prefWidth="109.0" text="Sort" fx:id="sortButton">
              <items>
-               <MenuItem mnemonicParsing="false" text="Name" />
-               <MenuItem mnemonicParsing="false" text="Project type" />
-               <MenuItem mnemonicParsing="false" text="Budget" />
-               <MenuItem mnemonicParsing="false" text="Timeline" />
+               <MenuItem mnemonicParsing="false" text="Name" onAction="#sortByName" />
+               <MenuItem mnemonicParsing="false" text="Project type" onAction="#sortByType" />
+               <MenuItem mnemonicParsing="false" text="Budget" onAction="#sortByBudget" />
+               <MenuItem mnemonicParsing="false" text="Timeline" onAction="#sortByTimeline" />
              </items>
            </MenuButton>
          </HBox>

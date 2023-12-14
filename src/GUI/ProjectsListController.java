@@ -4,6 +4,7 @@ import Data.ProjectModelManager;
 import Model.ConstructionProject;
 
 import Model.RoadProject;
+import Utils.Sortings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -25,6 +26,7 @@ public class ProjectsListController
   @FXML private TableColumn<ConstructionProject, Double> budget;
   @FXML private TableColumn<ConstructionProject, Integer> timeline;
 
+  @FXML private MenuButton sortButton;
   @FXML private Button editButton;
   @FXML private Button deleteButton;
 
@@ -45,6 +47,7 @@ public class ProjectsListController
     editButton.setDisable(true);
     deleteButton.setDisable(true);
 
+    // add event handles
     projectList.setOnMouseClicked(event -> {
       var clickedButton = event.getButton();
       if(clickedButton == MouseButton.PRIMARY) {
@@ -103,5 +106,49 @@ public class ProjectsListController
     {
       modelManager.removeProject(selectedProject);
     }
+  }
+
+  public void sortByName(Event event)
+  {
+    var sortedList = modelManager.getAllProjects().getProjects();
+    Sortings.SortAscendingOnName(sortedList, 0, modelManager.getAllProjects().size() - 1);
+
+    var projectsForTableViewFormat = FXCollections.observableArrayList(sortedList);
+    this.projectList.setItems(projectsForTableViewFormat);
+
+    sortButton.setText("Name");
+  }
+
+  public void sortByType(Event event)
+  {
+    var sortedList = modelManager.getAllProjects().getProjects();
+    Sortings.SortAscendingOnType(sortedList, 0, sortedList.size() - 1);
+
+    var projectsForTableViewFormat = FXCollections.observableArrayList(sortedList);
+    this.projectList.setItems(projectsForTableViewFormat);
+
+    sortButton.setText("Project type");
+  }
+
+  public void sortByBudget(Event event)
+  {
+    var sortedList = modelManager.getAllProjects().getProjects();
+    Sortings.SortAscendingOnBudget(sortedList, 0, sortedList.size() - 1);
+
+    var projectsForTableViewFormat = FXCollections.observableArrayList(sortedList);
+    this.projectList.setItems(projectsForTableViewFormat);
+
+    sortButton.setText("Budget");
+  }
+
+  public void sortByTimeline(Event event)
+  {
+    var sortedList = modelManager.getAllProjects().getProjects();
+    Sortings.SortAscendingOnTimeline(sortedList, 0, sortedList.size() - 1);
+
+    var projectsForTableViewFormat = FXCollections.observableArrayList(sortedList);
+    this.projectList.setItems(projectsForTableViewFormat);
+
+    sortButton.setText("Timeline");
   }
 }
