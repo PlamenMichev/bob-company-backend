@@ -31,10 +31,10 @@ public class CommercialProject extends ConstructionProject
                            double size, int numberOfFloors, String intendedUse)
   {
     super(timeline, budget, "commercial", name,status,resource, id);
-    if(size < 0) throw new InvalidValueException();
-    if (numberOfFloors < 1) throw new InvalidValueException();
+    if(size < 0) throw new InvalidValueException("size", "low");
+    if (numberOfFloors < 1) throw new InvalidValueException("number of floors", "low");
     if(intendedUse.charAt(0) < 'A' ||
-      intendedUse.charAt(0) > 'z') throw new InvalidValueException();
+      intendedUse.charAt(0) > 'z') throw new InvalidValueException("intended use");
     if(intendedUse == null) throw new EmptyStringFieldException();
     this.size=size;
     this.numberOfFloors=numberOfFloors;
@@ -56,9 +56,9 @@ public class CommercialProject extends ConstructionProject
                            String status,Resource resource , int id,
                            double size, String intendedUse){
     super(18, budget, "commercial", name, status, resource, id);
-    if(size < 0) throw new InvalidValueException();
+    if(size < 0) throw new InvalidValueException("size", "low");
     if(intendedUse.charAt(0) < 'A' ||
-            intendedUse.charAt(0) > 'z') throw new InvalidValueException();
+            intendedUse.charAt(0) > 'z') throw new InvalidValueException("intended use");
     if(intendedUse == null) throw new EmptyStringFieldException();
     this.size=size;
     numberOfFloors=1;
@@ -89,7 +89,7 @@ public class CommercialProject extends ConstructionProject
    */
   public void setNumberOfFloors(int numberOfFloors)
   {
-    if(numberOfFloors < 1) throw new InvalidValueException();
+    if(numberOfFloors < 1) throw new InvalidValueException("number of floors", "low");
     this.numberOfFloors=numberOfFloors;
   }
 

@@ -31,10 +31,10 @@ public class RoadProject extends ConstructionProject
                       int id, double length, double width, int numberOfBridges, int environmentalChallenges)
   {
     super(timeline, budget,"road", name, status, resource, id);
-    if(length < 0) throw new InvalidValueException();
-    if(width < 0) throw new InvalidValueException();
-    if(numberOfBridges < 0) throw new InvalidValueException();
-    if(environmentalChallenges < 0) throw new InvalidValueException();
+    if(length < 0) throw new InvalidValueException("length");
+    if(width < 0) throw new InvalidValueException("width");
+    if(numberOfBridges < 0) throw new InvalidValueException("number of bridges");
+    if(environmentalChallenges < 0) throw new InvalidValueException("environmental challenges");
     this.length =length;
     this.width=width;
     this.numberOfBridges=numberOfBridges;
@@ -57,8 +57,8 @@ public class RoadProject extends ConstructionProject
                       int id, double length, double width)
   {
     super(18, budget, "road", name, status, resource, id);
-    if(length < 0) throw new InvalidValueException();
-    if(width < 0) throw new InvalidValueException();
+    if(length < 0) throw new InvalidValueException("length");
+    if(width < 0) throw new InvalidValueException("width");
     this.length =length;
     this.width=width;
     numberOfBridges=0;
@@ -107,7 +107,7 @@ public class RoadProject extends ConstructionProject
    */
   public void setLength(double length)
   {
-    if (length < 0) throw new InvalidValueException();
+    if (length < 0) throw new InvalidValueException("length");
     this.length = length;
   }
 
@@ -117,7 +117,7 @@ public class RoadProject extends ConstructionProject
    */
   public void setWidth(double width)
   {
-    if (width < 0) throw new InvalidValueException();
+    if (width < 0) throw new InvalidValueException("width");
     this.width=width;
   }
 
@@ -127,7 +127,7 @@ public class RoadProject extends ConstructionProject
    */
   public void setNumberOfBridges(int numberOfBridges)
   {
-    if (numberOfBridges < 0) throw new InvalidValueException();
+    if (numberOfBridges < 0) throw new InvalidValueException("number of bridges");
     this.numberOfBridges=numberOfBridges;
   }
 
@@ -137,7 +137,7 @@ public class RoadProject extends ConstructionProject
    */
   public void setEnvironmentalChallenges(int environmentalChallenges)
   {
-    if(environmentalChallenges < 0) throw new InvalidValueException();
+    if(environmentalChallenges < 0) throw new InvalidValueException("environmental challenges");
     this.environmentalChallenges = environmentalChallenges;
   }
 

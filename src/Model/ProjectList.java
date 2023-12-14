@@ -51,16 +51,7 @@ public class ProjectList implements Serializable
      */
     public void sortAOnName()
     {
-        Sortings.SortAscendingOnName(projects, 0, projects.size());
-    }
-
-    /**
-     * Method used to sort the list descending by name
-     */
-    public void sortDOnName()
-    {
-        sortAOnName();
-        Collections.reverse(projects);
+        Sortings.SortAscendingOnName(projects, 0, projects.size()-1);
     }
 
     /**
@@ -68,16 +59,7 @@ public class ProjectList implements Serializable
      */
     public void sortAOnType()
     {
-        Sortings.SortAscendingOnType(projects, 0, projects.size());
-    }
-
-    /**
-     * Method used to sort the list descending by type
-     */
-    public void sortDOnType()
-    {
-        sortAOnType();
-        Collections.reverse(projects);
+        Sortings.SortAscendingOnType(projects, 0, projects.size()-1);
     }
 
     /**
@@ -85,16 +67,7 @@ public class ProjectList implements Serializable
      */
     public void sortAOnBudget()
     {
-        Sortings.SortAscendingOnBudget(projects, 0, projects.size());
-    }
-
-    /**
-     * Method used to sort the list descending by budget
-     */
-    public void sortDOnBudget()
-    {
-        sortAOnBudget();
-        Collections.reverse(projects);
+        Sortings.SortAscendingOnBudget(projects, 0, projects.size()-1);
     }
 
     /**
@@ -102,17 +75,9 @@ public class ProjectList implements Serializable
      */
     public void sortAOnTimeline()
     {
-        Sortings.SortAscendingOnTimeline(projects, 0, projects.size());
+        Sortings.SortAscendingOnTimeline(projects, 0, projects.size()-1);
     }
 
-    /**
-     * Method used to sort the list descending by timeline
-     */
-    public void sortDOnTimeline()
-    {
-        sortAOnTimeline();
-        Collections.reverse(projects);
-    }
     /**
      * Method that calculates the average of material expenses for the
      * finished projects of the specified project type
@@ -185,6 +150,10 @@ public class ProjectList implements Serializable
         return total;
     }
 
+    /**
+     * Method used to get the size of the project list
+     * @return the size of the project list
+     */
     public int size()
     {
         return projects.size();

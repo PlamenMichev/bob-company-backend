@@ -18,6 +18,11 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.Objects;
 
+/**
+ * The class that is used to manage actions in the statistics tab
+ * @author Group 2
+ * @version 1.0
+ */
 public class StatisticsController
 {
 
@@ -31,6 +36,10 @@ public class StatisticsController
 
     private ProjectModelManager projectModelManager;
 
+    /**
+     * Initializer of the tab
+     * @param projectModelManager the project model manager
+     */
     public void init(ProjectModelManager projectModelManager)
     {
         this.projectModelManager = projectModelManager;
@@ -43,6 +52,9 @@ public class StatisticsController
         updateStatistics();
     }
 
+    /**
+     * Method used to update the statistics
+     */
     public void updateStatistics()
     {
         var commercialStatistics = projectModelManager.getStatistics("commercial");

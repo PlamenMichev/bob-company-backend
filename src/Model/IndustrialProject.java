@@ -29,9 +29,9 @@ public class IndustrialProject extends ConstructionProject
                            double size, String buildingType)
   {
     super(timeline, budget, "industrial", name, status, resource, id);
-    if(size < 0) throw new InvalidValueException();
+    if(size < 0) throw new InvalidValueException("size" , "low");
     if(buildingType.charAt(0) < 'A' ||
-      buildingType.charAt(0) > 'z') throw new InvalidValueException();
+      buildingType.charAt(0) > 'z') throw new InvalidValueException("type");
     if(buildingType == null) throw new EmptyStringFieldException();
     this.size=size;
     this.buildingType=buildingType;
@@ -51,7 +51,7 @@ public class IndustrialProject extends ConstructionProject
                            String status,Resource resource , int id, double size)
   {
     super(30, budget, "industrial", name, status, resource ,id);
-    if(size < 0) throw new InvalidValueException();
+    if(size < 0) throw new InvalidValueException("size" , "low");
     this.size=size;
     buildingType="warehouse";
   }
@@ -80,7 +80,7 @@ public class IndustrialProject extends ConstructionProject
    */
   public void setSize(double size)
   {
-    if(size < 0) throw new InvalidValueException();
+    if(size < 0) throw new InvalidValueException("size" , "low");
     this.size=size;
   }
 
@@ -91,7 +91,7 @@ public class IndustrialProject extends ConstructionProject
   public void setBuildingType(String buildingType)
   {
     if(buildingType.charAt(0) < 'A' ||
-            buildingType.charAt(0) > 'z') throw new InvalidValueException();
+            buildingType.charAt(0) > 'z') throw new InvalidValueException("type");
     if(buildingType == null) throw new EmptyStringFieldException();
     this.buildingType=buildingType;
   }

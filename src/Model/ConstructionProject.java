@@ -33,17 +33,25 @@ public abstract class ConstructionProject implements Serializable
     public ConstructionProject(int timeline, double budget, String type,
                                String name,String status, Resource resource, int id)
     {
-        if(type.equals("residential") && (timeline < 6 || timeline > 12) ||
-            type.equals("commercial") && (timeline < 12 || timeline > 24) ||
-            type.equals("industrial") && (timeline < 24 || timeline > 36) ||
-            type.equals("road") && (timeline < 12 || timeline > 24)) throw new InvalidValueException();
-        if(type.equals("residential") && (budget < 100000 || budget > 500000) ||
-                type.equals("commercial") && (budget < 500000 || budget > 2000000) ||
-                type.equals("industrial") && (budget < 2000000 || budget > 10000000) ||
-                type.equals("road") && (budget < 1000000 || budget > 5000000)) throw new InvalidValueException();
-        if(type == null) throw new InvalidValueException();
+        if(type.equals("residential") && timeline < 6 ||
+            type.equals("commercial") && timeline < 12 ||
+            type.equals("industrial") && timeline < 24 ||
+            type.equals("road") && timeline < 12) throw new InvalidValueException("timeline", "low");
+        if(type.equals("residential") && timeline > 12 ||
+                type.equals("commercial") && timeline > 24 ||
+                type.equals("industrial") && timeline > 36 ||
+                type.equals("road") && timeline > 24) throw new InvalidValueException("timeline", "high");
+        if(type.equals("residential") && budget < 100000 ||
+                type.equals("commercial") && budget < 500000 ||
+                type.equals("industrial") && budget < 2000000 ||
+                type.equals("road") && budget < 1000000) throw new InvalidValueException("budget", "low");
+        if(type.equals("residential") && budget > 500000 ||
+                type.equals("commercial") && budget > 2000000 ||
+                type.equals("industrial") && budget > 10000000 ||
+                type.equals("road") && budget > 5000000) throw new InvalidValueException("budget", "high");
+        if(type == null) throw new EmptyStringFieldException();
         if(name.charAt(0) < 'A' ||
-            name.charAt(0) > 'z') throw new InvalidValueException();
+            name.charAt(0) > 'z') throw new InvalidValueException("name");
         if(name == null) throw new EmptyStringFieldException();
 
         this.timeline = timeline;
@@ -96,7 +104,7 @@ public abstract class ConstructionProject implements Serializable
      * @param budget new value for budget
      */
     public void setBudget(double budget) {
-        if(budget < 0) throw new InvalidValueException();
+        if(budget < 0) throw new InvalidValueException("budget" , "low");
         this.budget = budget;
     }
 
@@ -105,7 +113,7 @@ public abstract class ConstructionProject implements Serializable
      * @param timeline new value for timeline
      */
     public void setTimeline(int timeline) {
-        if(timeline < 0) throw new InvalidValueException();
+        if(timeline < 0) throw new InvalidValueException("timeline" , "low");
         this.timeline = timeline;
     }
 

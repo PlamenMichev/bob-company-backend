@@ -20,7 +20,11 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.Objects;
 
-
+/**
+ * The class that is used to manage actions in the index tab
+ * @author Group 2
+ * @version 1.0
+ */
 public class IndexController
 {
     @FXML private ProjectsListController projectsListController;
@@ -32,9 +36,11 @@ public class IndexController
     @FXML private Tab formPickerTab;
     @FXML private Tab statisticsTab;
 
+    /**
+     * Initializer of the index
+     */
     public void initialize()
     {
-        // TODO: initialize other controllers
         var modelManager = new ProjectModelManager("projects.bin");
         this.projectsListController.init(modelManager, formPickerController, tabPane);
         this.formPickerController.init(modelManager, this.tabPane);
@@ -42,6 +48,10 @@ public class IndexController
 
     }
 
+    /**
+     * Method used to change between tabs
+     * @param event the event the function will act upon
+     */
     public void tabChanged(Event event)
     {
         if (allProjectsTab.isSelected())

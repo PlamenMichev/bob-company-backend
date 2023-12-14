@@ -5,10 +5,21 @@ import parser.XmlJsonParser;
 
 import java.io.*;
 
+/**
+ * The class that is used to handle reading to and writing from files
+ * @author Group 2
+ * @version 1.0
+ */
 public class FileHandler
 {
   // Reads the first object from the file with the given file name and returns it.
   // Whoever calls the method will need to cast it from type Object to its actual type
+
+  /**
+   * Method used to read from binary files
+   * @param fileName the name of the file in use
+   * @return obj the text read from file
+   */
   public static Object readFromBinaryFile(String fileName) throws
       FileNotFoundException, IOException, ClassNotFoundException
   {
@@ -49,6 +60,12 @@ public class FileHandler
   }
 
   // Writes the given object to a file with the given file name
+
+  /**
+   * Method used to write to binary files
+   * @param fileName the file in use
+   * @param obj the text to be written in the file
+   */
   public static void writeToBinaryFile(String fileName, Object obj) throws FileNotFoundException, IOException
   {
     ObjectOutputStream writeToFile = null;
@@ -76,6 +93,11 @@ public class FileHandler
     }
   }
 
+  /**
+   * Method used to write to Xml files
+   * @param fileName the file in use
+   * @param obj the text to be written in the file
+   */
   public static void writeToXmlFile(String fileName, Object obj) throws
       ParserException
   {
