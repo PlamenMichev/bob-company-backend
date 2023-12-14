@@ -44,7 +44,13 @@ public class IndustrialController
     public void submitHandler(ActionEvent event) throws IOException {
         if (event.getSource() == save)
         {
-            submitForm();
+            try {
+                submitForm();
+            } catch (Exception e) {
+                // The error from the controller is shown and we catch it here so we don't block the app
+                // We don't return because the user is not done with the form
+                return;
+            }
         }
 
         tabPane.getSelectionModel().select(0); // The index tab
@@ -63,15 +69,11 @@ public class IndustrialController
         var expenses = Double.parseDouble(this.expenses.getText());
         var buildingType = this.buildingType.getText();
 
-        var isEdit = this.id != -1;
-        if (!isEdit) {
-            this.id = projectModelManager.getAllProjects().getProjects().size();
-        }
-
         var newProject = new IndustrialProject(
-            timeline, budget, name, status, new Resource(materialExpenses, manHoursUsed, expectedTotalHours, expenses), this.id, size, buildingType
+            timeline, budget, name, status, new Resource(materialExpenses, manHoursUsed, expectedTotalHours, expenses), id != -1 ? id : projectModelManager.getAllProjects().getProjects().size(), size, buildingType
         );
 
+        var isEdit = this.id != -1;
         if (isEdit) {
             projectModelManager.updateProject(newProject);
         } else {

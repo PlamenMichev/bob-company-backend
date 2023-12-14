@@ -37,6 +37,7 @@ public class ResidentialController
 
     private TabPane tabPane;
     private ProjectModelManager projectModelManager;
+    private boolean isEdit;
 
     public void init(ProjectModelManager projectModelManager, TabPane tabPane)
     {
@@ -47,7 +48,13 @@ public class ResidentialController
     public void submitHandler(ActionEvent event) throws IOException {
         if (event.getSource() == save)
         {
-            submitForm();
+            try {
+                submitForm();
+            } catch (Exception e) {
+                // The error from the controller is shown and we catch it here so we don't block the app
+                // We don't return because the user is not done with the form
+                return;
+            }
         }
 
         tabPane.getSelectionModel().select(0); // The index tab
@@ -69,11 +76,6 @@ public class ResidentialController
         var expectedTotalHours = Double.parseDouble(this.expectedTotalHours.getText());
         var expenses = Double.parseDouble(this.expenses.getText());
 
-        var isEdit = this.id != -1;
-        if (!isEdit) {
-            this.id = projectModelManager.getAllProjects().getProjects().size();
-        }
-
         var newProject = new ResidentialProject(
                 timeline,
                 budget,
@@ -85,7 +87,7 @@ public class ResidentialController
                 expenses
             ),
                 status,
-                id,
+            id != -1 ? id : projectModelManager.getAllProjects().getProjects().size(),
                 size,
                 numberOfFloors,
                 numberOfKitchens,
@@ -93,6 +95,7 @@ public class ResidentialController
                 roomsWithPlumbing
         );
 
+        var isEdit = this.id != -1;
         if (isEdit) {
             projectModelManager.updateProject(newProject);
         } else {
