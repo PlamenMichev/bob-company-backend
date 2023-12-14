@@ -1,5 +1,8 @@
 package Utils;
 
+import parser.ParserException;
+import parser.XmlJsonParser;
+
 import java.io.*;
 
 public class FileHandler
@@ -70,6 +73,24 @@ public class FileHandler
           System.out.println("IO Error closing file " + fileName);
         }
       }
+    }
+  }
+
+  public static void writeToXmlFile(String fileName, Object obj) throws
+      ParserException
+  {
+    XmlJsonParser parser = new XmlJsonParser();
+    try
+    {
+      parser.toXml(obj, fileName);
+    }
+    catch (ParserException e)
+    {
+      System.out.println("Error writing to XML file");
+    }
+    finally
+    {
+      System.out.println("Done writing to XML file");
     }
   }
 }
