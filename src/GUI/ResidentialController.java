@@ -18,6 +18,8 @@ public class ResidentialController
 {
     @FXML private Button save;
 
+    private int id;
+
     // Form states
     @FXML private TextField name;
     @FXML private ChoiceBox status;
@@ -25,7 +27,7 @@ public class ResidentialController
     @FXML private TextField timeline;
     @FXML private TextField budget;
     @FXML private TextField materialExpenses;
-    @FXML private TextField numberOfRooms;
+    @FXML private TextField numberOfFloors;
     @FXML private TextField numberOfBathrooms;
     @FXML private TextField numberOfKitchens;
     @FXML private TextField roomsWithPlumbing;
@@ -59,13 +61,18 @@ public class ResidentialController
         var timeline = Integer.parseInt(this.timeline.getText());
         var budget = Double.parseDouble(this.budget.getText());
         var materialExpenses = Double.parseDouble(this.materialExpenses.getText());
-        var numberOfRooms = Integer.parseInt(this.numberOfRooms.getText());
+        var numberOfFloors = Integer.parseInt(this.numberOfFloors.getText());
         var numberOfBathrooms = Integer.parseInt(this.numberOfBathrooms.getText());
         var numberOfKitchens = Integer.parseInt(this.numberOfKitchens.getText());
         var roomsWithPlumbing = Integer.parseInt(this.roomsWithPlumbing.getText());
         var manHoursUsed = Double.parseDouble(this.manHoursUsed.getText());
         var expectedTotalHours = Double.parseDouble(this.expectedTotalHours.getText());
         var expenses = Double.parseDouble(this.expenses.getText());
+
+        var isEdit = this.id != -1;
+        if (!isEdit) {
+            this.id = projectModelManager.getAllProjects().getProjects().size();
+        }
 
         var newProject = new ResidentialProject(
                 timeline,
@@ -78,17 +85,21 @@ public class ResidentialController
                 expenses
             ),
                 status,
-                projectModelManager.getAllProjects().getProjects().size(),
+                id,
                 size,
-                numberOfRooms,
+                numberOfFloors,
                 numberOfKitchens,
                 numberOfBathrooms,
                 roomsWithPlumbing
         );
 
-        var currentProjects = projectModelManager.getAllProjects();
-        currentProjects.addProject(newProject);
-        projectModelManager.saveProjects(currentProjects);
+        if (isEdit) {
+            projectModelManager.updateProject(newProject);
+        } else {
+            var currentProjects = projectModelManager.getAllProjects();
+            currentProjects.addProject(newProject);
+            projectModelManager.saveProjects(currentProjects);
+        }
 
         // Showing that the form was submitted successfully
         Alert a = new Alert(Alert.AlertType.CONFIRMATION);
@@ -100,18 +111,42 @@ public class ResidentialController
 
     public void resetValues()
     {
+        this.id = -1;
         name.setText("");
         status.setValue("Ongoing");
         timeline.setText("");
         size.setText("");
         budget.setText("");
         materialExpenses.setText("");
-        numberOfRooms.setText("");
+        numberOfFloors.setText("");
         numberOfBathrooms.setText("");
         numberOfKitchens.setText("");
         roomsWithPlumbing.setText("");
         manHoursUsed.setText("");
         expectedTotalHours.setText("");
         expenses.setText("");
+    }
+
+    public void edit(int id) {
+        var project = (ResidentialProject)projectModelManager.getById(id);
+
+        if (project == null) {
+            return;
+        }
+
+        this.id = id;
+        name.setText(project.getName());
+        status.setValue(project.getStatus());
+        size.setText(String.valueOf(project.getSize()));
+        timeline.setText(String.valueOf(project.getTimeline()));
+        budget.setText(String.valueOf(project.getBudget()));
+        materialExpenses.setText(String.valueOf(project.getMaterialExpenses()));
+        numberOfFloors.setText(String.valueOf(project.getNumberOfFloors()));
+        numberOfBathrooms.setText(String.valueOf(project.getNumberOfBathrooms()));
+        numberOfKitchens.setText(String.valueOf(project.getNumberOfKitchens()));
+        roomsWithPlumbing.setText(String.valueOf(project.getRoomsWithPlumbing()));
+        manHoursUsed.setText(String.valueOf(project.getManHours()));
+        expectedTotalHours.setText(String.valueOf(project.getExpectedTotalHours()));
+        expenses.setText(String.valueOf(project.getExpenses()));
     }
 }

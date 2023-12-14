@@ -19,6 +19,8 @@ public class CommercialController
     @FXML
     private Button save;
 
+    private int id;
+
     // Form states
     @FXML private TextField name;
     @FXML private ChoiceBox status;
@@ -64,6 +66,11 @@ public class CommercialController
         var expenses = this.expenses.getText();
         var numberOfFloors = this.numberOfFloors.getText();
 
+        var isEdit = this.id != -1;
+        if (!isEdit) {
+            this.id = projectModelManager.getAllProjects().getProjects().size();
+        }
+
         var newProject = new CommercialProject(
             Integer.parseInt(timeline),
             Double.parseDouble(budget),
@@ -74,15 +81,19 @@ public class CommercialController
                 Double.parseDouble(manHoursUsed),
                 Double.parseDouble(expectedTotalHours),
                 Double.parseDouble(expenses)),
-            projectModelManager.getAllProjects().getProjects().size(),
+            this.id,
             Double.parseDouble(size),
             Integer.parseInt(numberOfFloors),
             intendedUse
         );
 
-        var currentProjects = projectModelManager.getAllProjects();
-        currentProjects.addProject(newProject);
-        projectModelManager.saveProjects(currentProjects);
+        if (isEdit) {
+            projectModelManager.updateProject(newProject);
+        } else {
+            var currentProjects = projectModelManager.getAllProjects();
+            currentProjects.addProject(newProject);
+            projectModelManager.saveProjects(currentProjects);
+        }
 
         // Showing that the form was submitted successfully
         Alert a = new Alert(Alert.AlertType.CONFIRMATION);
@@ -94,6 +105,7 @@ public class CommercialController
 
     public void resetValues()
     {
+        this.id = -1;
         name.setText("");
         status.setValue("Ongoing");
         size.setText("");
@@ -105,5 +117,26 @@ public class CommercialController
         expectedTotalHours.setText("");
         expenses.setText("");
         numberOfFloors.setText("");
+    }
+
+    public void edit(int id) {
+        var project = (CommercialProject)projectModelManager.getById(id);
+
+        if (project == null) {
+            return;
+        }
+
+        this.id = id;
+        name.setText(project.getName());
+        status.setValue(project.getStatus());
+        size.setText(String.valueOf(project.getSize()));
+        timeline.setText(String.valueOf(project.getTimeline()));
+        budget.setText(String.valueOf(project.getBudget()));
+        intendedUse.setText(project.getIntendedUse());
+        materialExpenses.setText(String.valueOf(project.getMaterialExpenses()));
+        manHoursUsed.setText(String.valueOf(project.getManHours()));
+        expectedTotalHours.setText(String.valueOf(project.getExpectedTotalHours()));
+        expenses.setText(String.valueOf(project.getExpenses()));
+        numberOfFloors.setText(String.valueOf(project.getNumberOfFloors()));
     }
 }

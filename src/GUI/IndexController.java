@@ -34,7 +34,7 @@ public class IndexController
     {
         // TODO: initialize other controllers
         var modelManager = new ProjectModelManager("projects.bin");
-        this.projectsListController.init(modelManager);
+        this.projectsListController.init(modelManager, formPickerController, tabPane);
         this.formPickerController.init(modelManager, this.tabPane);
     }
 

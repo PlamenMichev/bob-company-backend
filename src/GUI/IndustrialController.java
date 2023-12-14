@@ -1,6 +1,7 @@
 package GUI;
 
 import Data.ProjectModelManager;
+import Model.CommercialProject;
 import Model.IndustrialProject;
 import Model.Resource;
 import javafx.event.ActionEvent;
@@ -17,6 +18,8 @@ import java.util.Objects;
 public class IndustrialController
 {
     @FXML private Button save;
+
+    private int id;
 
     @FXML private TextField name;
     @FXML private ChoiceBox status;
@@ -60,13 +63,22 @@ public class IndustrialController
         var expenses = Double.parseDouble(this.expenses.getText());
         var buildingType = this.buildingType.getText();
 
+        var isEdit = this.id != -1;
+        if (!isEdit) {
+            this.id = projectModelManager.getAllProjects().getProjects().size();
+        }
+
         var newProject = new IndustrialProject(
-            timeline, budget, name, status, new Resource(materialExpenses, manHoursUsed, expectedTotalHours, expenses), projectModelManager.getAllProjects().getProjects().size(), size, buildingType
+            timeline, budget, name, status, new Resource(materialExpenses, manHoursUsed, expectedTotalHours, expenses), this.id, size, buildingType
         );
 
-        var currentProjects = projectModelManager.getAllProjects();
-        currentProjects.addProject(newProject);
-        projectModelManager.saveProjects(currentProjects);
+        if (isEdit) {
+            projectModelManager.updateProject(newProject);
+        } else {
+            var currentProjects = projectModelManager.getAllProjects();
+            currentProjects.addProject(newProject);
+            projectModelManager.saveProjects(currentProjects);
+        }
 
         // Showing that the form was submitted successfully
         Alert a = new Alert(Alert.AlertType.CONFIRMATION);
@@ -78,6 +90,7 @@ public class IndustrialController
 
     public void resetValues()
     {
+        id = -1;
         name.setText("");
         status.setValue("Ongoing");
         timeline.setText("");
@@ -88,5 +101,25 @@ public class IndustrialController
         manHoursUsed.setText("");
         expectedTotalHours.setText("");
         expenses.setText("");
+    }
+
+    public void edit(int id) {
+        var project = (IndustrialProject)projectModelManager.getById(id);
+
+        if (project == null) {
+            return;
+        }
+
+        this.id = id;
+        name.setText(project.getName());
+        status.setValue(project.getStatus());
+        timeline.setText(String.valueOf(project.getTimeline()));
+        size.setText(String.valueOf(project.getSize()));
+        budget.setText(String.valueOf(project.getBudget()));
+        buildingType.setText(project.getBuildingType());
+        materialExpenses.setText(String.valueOf(project.getMaterialExpenses()));
+        manHoursUsed.setText(String.valueOf(project.getManHours()));
+        expectedTotalHours.setText(String.valueOf(project.getExpectedTotalHours()));
+        expenses.setText(String.valueOf(project.getExpenses()));
     }
 }

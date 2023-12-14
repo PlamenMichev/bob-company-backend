@@ -1,5 +1,6 @@
 package Data;
 
+import Model.ConstructionProject;
 import Model.ProjectList;
 import Model.ResidentialProject;
 import Utils.FileHandler;
@@ -66,4 +67,34 @@ public class ProjectModelManager
     }
   }
 
+  public void removeProject(ConstructionProject project)
+  {
+    var allProjects = getAllProjects();
+    allProjects.removeProject(project);
+    saveProjects(allProjects);
+  }
+
+  public ConstructionProject getById(int id)
+  {
+    var allProjects = getAllProjects().getProjects();
+    var result = allProjects.stream()
+      .filter((project) -> project.getId() == id)
+      .findFirst().orElse(null);
+
+    return result;
+  }
+
+  public void updateProject(ConstructionProject project)
+  {
+    var allProjects = getAllProjects();
+    var existingProject = getById(project.getId()); // We need the old object so the index of works with the .equals method
+    var indexOfProject = allProjects.getProjects().indexOf(existingProject);
+
+    System.out.println(indexOfProject);
+    if (indexOfProject != -1)
+    {
+      allProjects.getProjects().set(indexOfProject, project);
+      saveProjects(allProjects);
+    }
+  }
 }
