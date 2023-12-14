@@ -46,7 +46,13 @@ public class RoadController
     public void submitHandler(ActionEvent event) throws IOException {
         if (event.getSource() == save)
         {
-            submitForm();
+            try {
+                submitForm();
+            } catch (Exception e) {
+                // The error from the controller is shown and we catch it here so we don't block the app
+                // We don't return because the user is not done with the form
+                return;
+            }
         }
 
         tabPane.getSelectionModel().select(0); // The index tab
@@ -67,24 +73,20 @@ public class RoadController
         var expectedTotalHours = Double.parseDouble(this.expectedTotalHours.getText());
         var expenses = Double.parseDouble(this.expenses.getText());
 
-        var isEdit = this.id != -1;
-        if (!isEdit) {
-            this.id = projectModelManager.getAllProjects().getProjects().size();
-        }
-
         var newProject = new RoadProject(
             timeline,
             budget,
             name,
             status,
             new Resource(materialExpenses, manHoursUsed, expectedTotalHours, expenses),
-            id,
+            id != -1 ? id : projectModelManager.getAllProjects().getProjects().size(),
             length,
             width,
             numberOfBridges,
             environmentalChallenges
         );
 
+        var isEdit = id != -1;
         if (isEdit) {
             projectModelManager.updateProject(newProject);
         } else {
@@ -92,7 +94,6 @@ public class RoadController
             currentProjects.addProject(newProject);
             projectModelManager.saveProjects(currentProjects);
         }
-
 
         // Showing that the form was submitted successfully
         Alert a = new Alert(Alert.AlertType.CONFIRMATION);

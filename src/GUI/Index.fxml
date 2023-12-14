@@ -16,8 +16,8 @@
                    <fx:include fx:id="formPicker" source="FormPicker.fxml" />
                 </Tab>
 
-                <Tab onSelectionChanged="#tabChanged" text="Statistics">
-                     <fx:include source="Statistics.fxml" />
+                <Tab fx:id="statisticsTab" onSelectionChanged="#tabChanged" text="Statistics">
+                     <fx:include fx:id="statistics" source="Statistics.fxml" />
                 </Tab>
        </TabPane>
    </top>

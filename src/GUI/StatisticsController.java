@@ -1,11 +1,18 @@
 package GUI;
 
+import Data.ProjectModelManager;
+import Model.ConstructionProject;
+import Model.Statistic;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -14,17 +21,35 @@ import java.util.Objects;
 public class StatisticsController
 {
 
-    private Stage stage;
-    private Scene scene;
-    private Parent root;
+    // Table View
+    @FXML private TableView<Statistic> tableView;
+    @FXML private TableColumn<Statistic, String> projectType;
+    @FXML private TableColumn<Statistic, Double> materialExpenses;
+    @FXML private TableColumn<Statistic, Double> manHoursUsed;
+    @FXML private TableColumn<Statistic, Double> expectedTotalHours;
+    @FXML private TableColumn<Statistic, Double> expenses;
 
-    @FXML private Button ok;
+    private ProjectModelManager projectModelManager;
 
-    public void switchToIndex(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("Index.fxml")));
-        stage = (Stage)(ok.getScene().getWindow());
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+    public void init(ProjectModelManager projectModelManager)
+    {
+        this.projectModelManager = projectModelManager;
+        projectType.setCellValueFactory(new PropertyValueFactory<Statistic, String>("projectType"));
+        materialExpenses.setCellValueFactory(new PropertyValueFactory<Statistic, Double>("materialExpenses"));
+        manHoursUsed.setCellValueFactory(new PropertyValueFactory<Statistic, Double>("manHoursUsed"));
+        expectedTotalHours.setCellValueFactory(new PropertyValueFactory<Statistic, Double>("expectedTotalHours"));
+        expenses.setCellValueFactory(new PropertyValueFactory<Statistic, Double>("expenses"));
+
+        updateStatistics();
+    }
+
+    public void updateStatistics()
+    {
+        var commercialStatistics = projectModelManager.getStatistics("commercial");
+        var residentialStatistics = projectModelManager.getStatistics("residential");
+        var industrialStatistics = projectModelManager.getStatistics("industrial");
+        var roadStatistics = projectModelManager.getStatistics("road");
+
+        tableView.setItems(FXCollections.observableArrayList(commercialStatistics, residentialStatistics, industrialStatistics, roadStatistics));
     }
 }

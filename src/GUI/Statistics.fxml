@@ -21,25 +21,14 @@
       </Text>
    </top>
    <left>
-      <TableView prefHeight="344.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+      <TableView prefHeight="344.0" prefWidth="600.0" BorderPane.alignment="CENTER" fx:id="tableView">
         <columns>
-          <TableColumn prefWidth="97.0" text="Project type" />
-          <TableColumn prefWidth="130.0" text="Material expenses" />
-            <TableColumn prefWidth="133.0" text="Man hour used" />
-            <TableColumn prefWidth="141.0" text="Expected total hours" />
-            <TableColumn prefWidth="98.0" text="Expenses" />
+          <TableColumn prefWidth="97.0" text="Project type" fx:id="projectType" />
+          <TableColumn prefWidth="130.0" text="Material expenses" fx:id="materialExpenses" />
+            <TableColumn prefWidth="133.0" text="Man hour used" fx:id="manHoursUsed" />
+            <TableColumn prefWidth="141.0" text="Expected total hours" fx:id="expectedTotalHours" />
+            <TableColumn prefWidth="98.0" text="Expenses" fx:id="expenses" />
         </columns>
       </TableView>
    </left>
-   <bottom>
-      <HBox alignment="CENTER_RIGHT" prefHeight="37.0" prefWidth="600.0" BorderPane.alignment="CENTER">
-         <children>
-            <Button fx:id="ok" mnemonicParsing="false" onAction="#switchToIndex" text="OK">
-               <HBox.margin>
-                  <Insets right="15.0" />
-               </HBox.margin>
-            </Button>
-         </children>
-      </HBox>
-   </bottom>
 </BorderPane>
