@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.FormPickerController">
+    <top>
+        <TabPane fx:id="tabPane" tabClosingPolicy="UNAVAILABLE">
+            <Tab fx:id="residentialTab" text="Residential">
+                <fx:include fx:id="residential" source="Residential.fxml" />
+            </Tab>
+
+            <Tab fx:id="commercialTab" text="Commercial" onSelectionChanged="#tabChanged">
+                <fx:include fx:id="commercial" source="Commercial.fxml" />
+            </Tab>
+
+            <Tab fx:id="industrialTab" text="Industrial">
+                <fx:include fx:id="industrial" source="Industrial.fxml" />
+            </Tab>
+
+            <Tab fx:id="roadTab" text="Road">
+                <fx:include fx:id="road" source="Road.fxml" />
+            </Tab>
+        </TabPane>
+    </top>
+</BorderPane>
