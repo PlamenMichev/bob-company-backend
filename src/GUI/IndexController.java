@@ -25,10 +25,12 @@ public class IndexController
 {
     @FXML private ProjectsListController projectsListController;
     @FXML private FormPickerController formPickerController;
+    @FXML private StatisticsController statisticsController;
 
     @FXML private TabPane tabPane;
     @FXML private Tab allProjectsTab;
     @FXML private Tab formPickerTab;
+    @FXML private Tab statisticsTab;
 
     public void initialize()
     {
@@ -36,6 +38,8 @@ public class IndexController
         var modelManager = new ProjectModelManager("projects.bin");
         this.projectsListController.init(modelManager, formPickerController, tabPane);
         this.formPickerController.init(modelManager, this.tabPane);
+        this.statisticsController.init(modelManager);
+
     }
 
     public void tabChanged(Event event)
@@ -46,6 +50,9 @@ public class IndexController
         } else if (formPickerTab.isSelected())
         {
             formPickerController.resetValues();
+        } else if (statisticsTab.isSelected())
+        {
+            statisticsController.updateStatistics();
         }
     }
 }

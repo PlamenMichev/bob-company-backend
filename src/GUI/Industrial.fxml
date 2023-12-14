@@ -68,7 +68,6 @@
    <bottom>
       <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER_RIGHT">
          <children>
-            <Button mnemonicParsing="false" text="Delete" />
             <Button fx:id="save" mnemonicParsing="false" onAction="#submitHandler" text="Save">
                <HBox.margin>
                   <Insets left="15.0" right="15.0" />

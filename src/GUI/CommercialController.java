@@ -46,7 +46,13 @@ public class CommercialController
     public void submitHandler(ActionEvent event) throws IOException {
         if (event.getSource() == save)
         {
-            submitForm();
+            try {
+                submitForm();
+            } catch (Exception e) {
+                // The error from the controller is shown and we catch it here so we don't block the app
+                // We don't return because the user is not done with the form
+                return;
+            }
         }
 
         tabPane.getSelectionModel().select(0); // The index tab
@@ -65,12 +71,7 @@ public class CommercialController
         var expectedTotalHours = this.expectedTotalHours.getText();
         var expenses = this.expenses.getText();
         var numberOfFloors = this.numberOfFloors.getText();
-
-        var isEdit = this.id != -1;
-        if (!isEdit) {
-            this.id = projectModelManager.getAllProjects().getProjects().size();
-        }
-
+        
         var newProject = new CommercialProject(
             Integer.parseInt(timeline),
             Double.parseDouble(budget),
@@ -81,12 +82,13 @@ public class CommercialController
                 Double.parseDouble(manHoursUsed),
                 Double.parseDouble(expectedTotalHours),
                 Double.parseDouble(expenses)),
-            this.id,
+            id != -1 ? id : projectModelManager.getAllProjects().getProjects().size(),
             Double.parseDouble(size),
             Integer.parseInt(numberOfFloors),
             intendedUse
         );
 
+        var isEdit = this.id != -1;
         if (isEdit) {
             projectModelManager.updateProject(newProject);
         } else {

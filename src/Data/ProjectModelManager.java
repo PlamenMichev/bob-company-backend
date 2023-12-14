@@ -3,6 +3,7 @@ package Data;
 import Model.ConstructionProject;
 import Model.ProjectList;
 import Model.ResidentialProject;
+import Model.Statistic;
 import Utils.FileHandler;
 import parser.ParserException;
 import parser.XmlJsonParser;
@@ -10,6 +11,8 @@ import parser.XmlJsonParser;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.stream.DoubleStream;
 
 public class ProjectModelManager
 {
@@ -96,5 +99,31 @@ public class ProjectModelManager
       allProjects.getProjects().set(indexOfProject, project);
       saveProjects(allProjects);
     }
+  }
+
+  public Statistic getStatistics(String projecectType)
+  {
+    var allProjects = getAllProjects().getProjects();
+    var projects = allProjects.stream()
+      .filter((project) -> project.getType().equalsIgnoreCase(projecectType) && project.getStatus().equalsIgnoreCase("finished")).toList();
+
+    // Find the average of the material expenses from all the projects
+    var materialExpenses = projects.stream()
+      .mapToDouble(ConstructionProject::getMaterialExpenses)
+      .average().orElse(0);
+
+    var manHoursUsed = projects.stream()
+      .mapToDouble(ConstructionProject::getManHours)
+      .average().orElse(0);
+
+    var expectedTotalHours = projects.stream()
+      .mapToDouble(ConstructionProject::getExpectedTotalHours)
+      .average().orElse(0);
+
+    var expenses = projects.stream()
+      .mapToDouble(ConstructionProject::getExpenses)
+      .average().orElse(0);
+
+    return new Statistic(projecectType, materialExpenses, manHoursUsed, expectedTotalHours, expenses);
   }
 }
