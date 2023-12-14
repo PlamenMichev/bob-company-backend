@@ -18,6 +18,8 @@ public class RoadController
 {
     @FXML private Button save;
 
+    private int id;
+
     // Form states
     @FXML private TextField name;
     @FXML private ChoiceBox status;
@@ -65,22 +67,32 @@ public class RoadController
         var expectedTotalHours = Double.parseDouble(this.expectedTotalHours.getText());
         var expenses = Double.parseDouble(this.expenses.getText());
 
+        var isEdit = this.id != -1;
+        if (!isEdit) {
+            this.id = projectModelManager.getAllProjects().getProjects().size();
+        }
+
         var newProject = new RoadProject(
             timeline,
             budget,
             name,
             status,
             new Resource(materialExpenses, manHoursUsed, expectedTotalHours, expenses),
-            projectModelManager.getAllProjects().getProjects().size(),
+            id,
             length,
             width,
             numberOfBridges,
             environmentalChallenges
         );
 
-        var currentProjects = projectModelManager.getAllProjects();
-        currentProjects.addProject(newProject);
-        projectModelManager.saveProjects(currentProjects);
+        if (isEdit) {
+            projectModelManager.updateProject(newProject);
+        } else {
+            var currentProjects = projectModelManager.getAllProjects();
+            currentProjects.addProject(newProject);
+            projectModelManager.saveProjects(currentProjects);
+        }
+
 
         // Showing that the form was submitted successfully
         Alert a = new Alert(Alert.AlertType.CONFIRMATION);
@@ -92,6 +104,7 @@ public class RoadController
 
     public void resetValues()
     {
+        id = -1;
         name.setText("");
         status.setValue(null);
         length.setText("");
@@ -104,5 +117,28 @@ public class RoadController
         expenses.setText("");
         numberOfBridges.setText("");
         environmentalChallenges.setText("");
+    }
+
+    public void edit(int id)
+    {
+        var project = (RoadProject) projectModelManager.getById(id);
+        if (project == null)
+        {
+            return;
+        }
+
+        this.id = id;
+        name.setText(project.getName());
+        status.setValue(project.getStatus());
+        length.setText(String.valueOf(project.getLength()));
+        width.setText(String.valueOf(project.getWidth()));
+        timeline.setText(String.valueOf(project.getTimeline()));
+        budget.setText(String.valueOf(project.getBudget()));
+        materialExpenses.setText(String.valueOf(project.getMaterialExpenses()));
+        manHoursUsed.setText(String.valueOf(project.getManHours()));
+        expectedTotalHours.setText(String.valueOf(project.getExpectedTotalHours()));
+        expenses.setText(String.valueOf(project.getExpenses()));
+        numberOfBridges.setText(String.valueOf(project.getNumberOfBridges()));
+        environmentalChallenges.setText(String.valueOf(project.getEnvironmentalChallenges()));
     }
 }

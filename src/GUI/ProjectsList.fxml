@@ -6,17 +6,31 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<?import javafx.geometry.Insets?>
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ProjectsListController">
     <top>
+
         <HBox alignment="CENTER_RIGHT" prefHeight="34.0" prefWidth="358.0">
-               <MenuButton mnemonicParsing="false" prefHeight="34.0" prefWidth="109.0" text="Sort">
-                 <items>
-                   <MenuItem mnemonicParsing="false" text="Name" />
-                   <MenuItem mnemonicParsing="false" text="Project type" />
-                   <MenuItem mnemonicParsing="false" text="Budget" />
-                   <MenuItem mnemonicParsing="false" text="Timeline" />
-                 </items>
-               </MenuButton>
+            <Button mnemonicParsing="false" fx:id="editButton" text="Edit" onAction="#actionButtonHandler">
+                <HBox.margin>
+                    <Insets right="15.0" />
+                </HBox.margin>
+            </Button>
+
+            <Button mnemonicParsing="false" fx:id="deleteButton" text="Delete" onAction="#actionButtonHandler">
+                <HBox.margin>
+                    <Insets right="15.0" />
+                </HBox.margin>
+            </Button>
+
+           <MenuButton mnemonicParsing="false" prefHeight="34.0" prefWidth="109.0" text="Sort">
+             <items>
+               <MenuItem mnemonicParsing="false" text="Name" />
+               <MenuItem mnemonicParsing="false" text="Project type" />
+               <MenuItem mnemonicParsing="false" text="Budget" />
+               <MenuItem mnemonicParsing="false" text="Timeline" />
+             </items>
+           </MenuButton>
          </HBox>
     </top>
 

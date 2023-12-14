@@ -52,4 +52,30 @@ public class FormPickerController
       roadController.resetValues();
     }
   }
+
+  public void editProject(int id, String type)
+  {
+    if (type == null)
+    {
+      return;
+    }
+
+    if (type.equalsIgnoreCase("Commercial"))
+    {
+      tabPane.getSelectionModel().select(commercialTab);
+      commercialController.edit(id);
+    } else if (type.equalsIgnoreCase("Industrial"))
+    {
+      tabPane.getSelectionModel().select(industrialTab);
+      industrialController.edit(id);
+    } else if (type.equalsIgnoreCase("Residential"))
+    {
+      tabPane.getSelectionModel().select(residentialTab);
+      residentialController.edit(id);
+    } else if (type.equalsIgnoreCase("Road"))
+    {
+      tabPane.getSelectionModel().select(roadTab);
+      roadController.edit(id);
+    }
+  }
 }
