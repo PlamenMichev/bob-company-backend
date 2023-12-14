@@ -3,6 +3,11 @@ import Data.ProjectModelManager;
 import Utils.FileHandler;
 import javafx.application.Application;
 
+/**
+ * The class that is used to start the application
+ * @author Group 2
+ * @version 1.0
+ */
 public class AppLauncher
 {
     public static void main(String[] args) throws Exception

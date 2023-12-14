@@ -16,6 +16,11 @@ import javafx.scene.input.MouseButton;
 
 import java.io.IOException;
 
+/**
+ * The class that is used to manage actions for the project list
+ * @author Group 2
+ * @version 1.0
+ */
 public class ProjectsListController
 {
 
@@ -34,6 +39,12 @@ public class ProjectsListController
   private FormPickerController formPickerController;
   private TabPane globalTabPane;
 
+  /**
+   * Initializer for the project list
+   * @param modelManager the project model manager
+   * @param formPickerController the form picker
+   * @param globalTabPane the tab (global)
+   */
   public void init(ProjectModelManager modelManager, FormPickerController formPickerController, TabPane globalTabPane)
   {
     this.formPickerController = formPickerController;
@@ -63,6 +74,9 @@ public class ProjectsListController
     updateProjects();
   }
 
+  /**
+   * Method used to reset the project list to the default value
+   */
   public void reset()
   {
     if (modelManager != null)
@@ -71,6 +85,9 @@ public class ProjectsListController
     }
   }
 
+  /**
+   * Method used to update the values in the project list
+   */
   private void updateProjects()
   {
     var projects = modelManager.getAllProjects();
@@ -79,6 +96,10 @@ public class ProjectsListController
     this.projectList.setItems(projectsForTableViewFormat);
   }
 
+  /**
+   * Method used to handle user actions
+   * @param event the event the method acts upon
+   */
   public void actionButtonHandler(ActionEvent event) throws IOException
   {
     if (event.getSource() == deleteButton)
@@ -99,6 +120,9 @@ public class ProjectsListController
     }
   }
 
+  /**
+   * Method used to delete one project
+   */
   private void deleteProject()
   {
     var selectedProject = projectList.getSelectionModel().getSelectedItem();
@@ -108,6 +132,10 @@ public class ProjectsListController
     }
   }
 
+  /**
+   * Method used to sort by name
+   * @param event the event the method acts upon
+   */
   public void sortByName(Event event)
   {
     var sortedList = modelManager.getAllProjects().getProjects();
@@ -119,6 +147,10 @@ public class ProjectsListController
     sortButton.setText("Name");
   }
 
+  /**
+   * Method used to sort by type
+   * @param event the event the method acts upon
+   */
   public void sortByType(Event event)
   {
     var sortedList = modelManager.getAllProjects().getProjects();
@@ -130,6 +162,10 @@ public class ProjectsListController
     sortButton.setText("Project type");
   }
 
+  /**
+   * Method used to sort by budget
+   * @param event the event the method acts upon
+   */
   public void sortByBudget(Event event)
   {
     var sortedList = modelManager.getAllProjects().getProjects();
@@ -141,6 +177,10 @@ public class ProjectsListController
     sortButton.setText("Budget");
   }
 
+  /**
+   * Method used to sort by timeline
+   * @param event the event the method acts upon
+   */
   public void sortByTimeline(Event event)
   {
     var sortedList = modelManager.getAllProjects().getProjects();

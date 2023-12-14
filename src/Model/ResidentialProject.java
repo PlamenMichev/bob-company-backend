@@ -34,11 +34,11 @@ public class ResidentialProject extends ConstructionProject
                               int numberOfBathrooms, int roomsWithPlumbing)
     {
         super(timeline, budget, "residential", name,status, resource, id);
-        if(size < 0) throw new InvalidValueException();
-        if(numberOfFloors < 1) throw new InvalidValueException();
-        if(numberOfKitchens < 1) throw new InvalidValueException();
-        if(numberOfBathrooms < 1) throw new InvalidValueException();
-        if(roomsWithPlumbing < 1) throw new InvalidValueException();
+        if(size < 0) throw new InvalidValueException("size" , "low");
+        if(numberOfFloors < 1) throw new InvalidValueException("number of floors");
+        if(numberOfKitchens < 1) throw new InvalidValueException("number of kitchens");
+        if(numberOfBathrooms < 1) throw new InvalidValueException("number of bathrooms");
+        if(roomsWithPlumbing < 1) throw new InvalidValueException("rooms with plumbing");
         this.size = size;
         this.numberOfFloors = numberOfFloors;
         this.numberOfKitchens = numberOfKitchens;
@@ -61,7 +61,7 @@ public class ResidentialProject extends ConstructionProject
                                String status,Resource resource , int id, double size)
     {
         super(9, budget, "Residential", name,status, resource, id);
-        if(size < 0) throw new InvalidValueException();
+        if(size < 0) throw new InvalidValueException("size");
         this.size = size;
         this.numberOfFloors = 1;
         this.numberOfKitchens = 1;

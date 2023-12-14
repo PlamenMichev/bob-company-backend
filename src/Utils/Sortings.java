@@ -44,7 +44,7 @@ public class Sortings
         for(int j = p; j < r; j++) // 1 initialization, r-p comparisons, r-p incrementation
                                     // the loop runs r-p times
         {
-            if(arr.get(j).getName().compareTo(x) < 0) // 1 comparison + 1 .get() + 1 .getName() + 1 .compareTo() + 1 comparison
+            if(arr.get(j).getName().compareTo(x) <= 0) // 1 comparison + 1 .get() + 1 .getName() + 1 .compareTo() + 1 comparison
             {
                 i++; // 1 incrementation
                 aux = arr.get(i); // 1 giving of value, 1 .get()
@@ -53,7 +53,7 @@ public class Sortings
             }
         }
         aux = arr.get(i+1); // 1 giving of value, 1 .get()
-        arr.set(i, arr.get(r)); // 1 .set(), 1 .get()
+        arr.set(i+1, arr.get(r)); // 1 .set(), 1 .get()
         arr.set(r, aux); // 1 .set()
         return i+1; // 1 return
 
@@ -104,7 +104,7 @@ public class Sortings
             }
         }
         aux = arr.get(i+1); // 1 giving of value, 1 .get()
-        arr.set(i, arr.get(r)); // 1 .set(), 1 .get()
+        arr.set(i+1, arr.get(r)); // 1 .set(), 1 .get()
         arr.set(r, aux); // 1 .set()
         return i+1; // 1 return
 
@@ -149,7 +149,7 @@ public class Sortings
             }
         }
         aux = arr.get(i+1); // 1 giving of value, 1 .get()
-        arr.set(i, arr.get(r)); // 1 .set(), 1 .get()
+        arr.set(i+1, arr.get(r)); // 1 .set(), 1 .get()
         arr.set(r, aux); // 1 .set()
         return i+1; // 1 return
 
@@ -194,7 +194,7 @@ public class Sortings
             }
         }
         aux = arr.get(i+1); // 1 giving of value, 1 .get()
-        arr.set(i, arr.get(r)); // 1 .set(), 1 .get()
+        arr.set(i+1, arr.get(r)); // 1 .set(), 1 .get()
         arr.set(r, aux); // 1 .set()
         return i+1; // 1 return
 

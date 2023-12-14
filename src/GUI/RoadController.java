@@ -14,6 +14,11 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.Objects;
 
+/**
+ * The class that is used to manage actions in the road tab
+ * @author Group 2
+ * @version 1.0
+ */
 public class RoadController
 {
     @FXML private Button save;
@@ -37,12 +42,21 @@ public class RoadController
     private TabPane tabPane;
     private ProjectModelManager projectModelManager;
 
+    /**
+     * Initializer of the tab
+     * @param projectModelManager the project model manager
+     * @param tabPane the tab
+     */
     public void init(ProjectModelManager projectModelManager, TabPane tabPane)
     {
         this.projectModelManager = projectModelManager;
         this.tabPane = tabPane;
     }
 
+    /**
+     * The method used to handle the save button
+     * @param event the event the method will act upon ("save")
+     */
     public void submitHandler(ActionEvent event) throws IOException {
         if (event.getSource() == save)
         {
@@ -58,6 +72,9 @@ public class RoadController
         tabPane.getSelectionModel().select(0); // The index tab
     }
 
+    /**
+     * Method used to submit the data user inputs and check it
+     */
     public void submitForm()
     {
         var timeline = Integer.parseInt(this.timeline.getText());
@@ -103,6 +120,9 @@ public class RoadController
         resetValues();
     }
 
+    /**
+     * Method use to reset to base values
+     */
     public void resetValues()
     {
         id = -1;
@@ -120,6 +140,10 @@ public class RoadController
         environmentalChallenges.setText("");
     }
 
+    /**
+     * Method used to edit the data of a project specified by id
+     * @param id the id of the desired project
+     */
     public void edit(int id)
     {
         var project = (RoadProject) projectModelManager.getById(id);

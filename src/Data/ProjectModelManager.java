@@ -14,16 +14,29 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.stream.DoubleStream;
 
+/**
+ * The class that is used to get information from the file and save information into it
+ * @author Group 2
+ * @version 1.0
+ */
 public class ProjectModelManager
 {
   private String fileName;
 
+  /**
+   * Constructor for ProjectModelManager class
+   * @param fileName the name of the file in use
+   */
   public ProjectModelManager(String fileName)
   {
     this.fileName = fileName;
   }
 
 
+  /**
+   * Method used to get all projects from the file
+   * @return allProjects list of all projects
+   */
   public ProjectList getAllProjects()
   {
     var allProjects = new ProjectList();
@@ -54,6 +67,10 @@ public class ProjectModelManager
     return allProjects;
   }
 
+  /**
+   * Method used to store the current list of projects into the file
+   * @param projects the current list of projects
+   */
   public void saveProjects(ProjectList projects)
   {
     try
@@ -70,6 +87,10 @@ public class ProjectModelManager
     }
   }
 
+  /**
+   * Method used to remove a specific project from the file
+   * @param project the project to be removed
+   */
   public void removeProject(ConstructionProject project)
   {
     var allProjects = getAllProjects();
@@ -77,6 +98,11 @@ public class ProjectModelManager
     saveProjects(allProjects);
   }
 
+  /**
+   * Function used to get a construction project by id
+   * @param id the id of the desired construction project
+   * @return result the desired project
+   */
   public ConstructionProject getById(int id)
   {
     var allProjects = getAllProjects().getProjects();
@@ -87,6 +113,10 @@ public class ProjectModelManager
     return result;
   }
 
+  /**
+   * Method used to change the information about one project
+   * @param project the project that will be modified
+   */
   public void updateProject(ConstructionProject project)
   {
     var allProjects = getAllProjects();
@@ -101,11 +131,16 @@ public class ProjectModelManager
     }
   }
 
-  public Statistic getStatistics(String projecectType)
+  /**
+   * Method used to get the statistics about finished projects
+   * @param projectType the type of the project the statistics will be made about
+   * @return the statistics object needed
+   */
+  public Statistic getStatistics(String projectType)
   {
     var allProjects = getAllProjects().getProjects();
     var projects = allProjects.stream()
-      .filter((project) -> project.getType().equalsIgnoreCase(projecectType) && project.getStatus().equalsIgnoreCase("finished")).toList();
+      .filter((project) -> project.getType().equalsIgnoreCase(projectType) && project.getStatus().equalsIgnoreCase("finished")).toList();
 
     // Find the average of the material expenses from all the projects
     var materialExpenses = projects.stream()
@@ -124,6 +159,6 @@ public class ProjectModelManager
       .mapToDouble(ConstructionProject::getExpenses)
       .average().orElse(0);
 
-    return new Statistic(projecectType, materialExpenses, manHoursUsed, expectedTotalHours, expenses);
+    return new Statistic(projectType, materialExpenses, manHoursUsed, expectedTotalHours, expenses);
   }
 }

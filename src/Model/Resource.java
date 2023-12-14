@@ -25,10 +25,10 @@ public class Resource implements Serializable
      */
     public Resource(double materialExpenses, double manHours, double expectedTotalHours, double expenses)
     {
-        if(materialExpenses < 0) throw new InvalidValueException();
-        if(manHours < 0) throw new InvalidValueException();
-        if(expectedTotalHours < 0) throw new InvalidValueException();
-        if(expenses < 0) throw new InvalidValueException();
+        if(materialExpenses < 0) throw new InvalidValueException("material expenses");
+        if(manHours < 0) throw new InvalidValueException("man hours");
+        if(expectedTotalHours < 0) throw new InvalidValueException("expected total hours");
+        if(expenses < 0) throw new InvalidValueException("expenses");
         this.materialExpenses = materialExpenses;
         this.manHours = manHours;
         this.expectedTotalHours = expectedTotalHours;
@@ -40,7 +40,7 @@ public class Resource implements Serializable
      * @param materialExpenses new value for materialExpenses
      */
     public void setMaterialExpenses(double materialExpenses) {
-        if(materialExpenses < 0) throw new InvalidValueException();
+        if(materialExpenses < 0) throw new InvalidValueException("material expenses");
         this.materialExpenses = materialExpenses;
     }
 
@@ -57,7 +57,7 @@ public class Resource implements Serializable
      * @param manHours new value for manHours
      */
     public void setManHours(double manHours) {
-        if(manHours < 0) throw new InvalidValueException();
+        if(manHours < 0) throw new InvalidValueException("man hours");
         this.manHours = manHours;
     }
 
@@ -74,7 +74,7 @@ public class Resource implements Serializable
      * @param expectedTotalHours new value for expectedTotalHours
      */
     public void setExpectedTotalHours(double expectedTotalHours) {
-        if(expectedTotalHours < 0) throw new InvalidValueException();
+        if(expectedTotalHours < 0) throw new InvalidValueException("expected total hours");
         this.expectedTotalHours = expectedTotalHours;
     }
 
@@ -91,7 +91,7 @@ public class Resource implements Serializable
      * @param expenses new value for expenses
      */
     public void setExpenses(double expenses) {
-        if(expenses < 0) throw new InvalidValueException();
+        if(expenses < 0) throw new InvalidValueException("expenses");
         this.expenses = expenses;
     }
 

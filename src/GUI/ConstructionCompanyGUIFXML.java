@@ -6,6 +6,12 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+
+/**
+ * The main class of the GUI
+ * @author Group 2
+ * @version 1.0
+ */
 public class ConstructionCompanyGUIFXML extends Application
 {
   public void start(Stage window) throws IOException

@@ -15,6 +15,11 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.Objects;
 
+/**
+ * The class that is used to manage actions in the industrial tab
+ * @author Group 2
+ * @version 1.0
+ */
 public class IndustrialController
 {
     @FXML private Button save;
@@ -35,12 +40,21 @@ public class IndustrialController
     private TabPane tabPane;
     private ProjectModelManager projectModelManager;
 
+    /**
+     * Initializer of the tab
+     * @param projectModelManager the project model manager
+     * @param tabPane the tab
+     */
     public void init(ProjectModelManager projectModelManager, TabPane tabPane)
     {
         this.projectModelManager = projectModelManager;
         this.tabPane = tabPane;
     }
 
+    /**
+     * The method used to handle the save button
+     * @param event the event the method will act upon ("save")
+     */
     public void submitHandler(ActionEvent event) throws IOException {
         if (event.getSource() == save)
         {
@@ -56,6 +70,9 @@ public class IndustrialController
         tabPane.getSelectionModel().select(0); // The index tab
     }
 
+    /**
+     * Method used to submit the data user inputs and check it
+     */
     public void submitForm()
     {
         var name = this.name.getText();
@@ -90,6 +107,9 @@ public class IndustrialController
         resetValues();
     }
 
+    /**
+     * Method use to reset to base values
+     */
     public void resetValues()
     {
         id = -1;
@@ -105,6 +125,10 @@ public class IndustrialController
         expenses.setText("");
     }
 
+    /**
+     * Method used to edit the data of a project specified by id
+     * @param id the id of the desired project
+     */
     public void edit(int id) {
         var project = (IndustrialProject)projectModelManager.getById(id);
 
