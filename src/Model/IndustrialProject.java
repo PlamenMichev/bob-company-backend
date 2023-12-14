@@ -80,7 +80,7 @@ public class IndustrialProject extends ConstructionProject
    */
   public void setSize(double size)
   {
-    if(size < 0) throw new InvalidValueException("size" , "low");
+    if(size < 0) throw new InvalidValueException("size");
     this.size=size;
   }
 
